@@ -1,0 +1,12 @@
+*.asv
+*.csv
+*.fig
+*.log
+*.mat
+*.pdf
+*.png
+*.txt
+*_analysis.md
+*_diary.*
+*_stderr.*
+*_stdout.*
