@@ -19,7 +19,8 @@ if exist(logFile, 'file')
 end
 diary(logFile);
 
-fprintf('Starting full independent K sweep at %s\n', datestr(now));
+fprintf('Starting full independent K sweep at %s\n', ...
+    char(datetime('now','Format','yyyy-MM-dd HH:mm:ss')));
 fprintf('Working directory: %s\n', pwd);
 fprintf('Script directory:  %s\n', scriptDir);
 
@@ -29,5 +30,6 @@ KERR_NARMA_OUTPUT_TAG = 'KSweepFull_20260706';
 
 run(fullfile(scriptDir, 'Fig3_KerrReservoir_NARMA10_Reproducible.m'));
 
-fprintf('Finished full independent K sweep at %s\n', datestr(now));
+fprintf('Finished full independent K sweep at %s\n', ...
+    char(datetime('now','Format','yyyy-MM-dd HH:mm:ss')));
 diary off;
