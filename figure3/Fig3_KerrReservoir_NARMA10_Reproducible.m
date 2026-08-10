@@ -26,6 +26,7 @@ overrideJSweep = exist('KERR_NARMA_RUN_JSWEEP','var') && KERR_NARMA_RUN_JSWEEP;
 overrideFeatureAblations = exist('KERR_NARMA_RUN_FEATURE_ABLATIONS','var') && KERR_NARMA_RUN_FEATURE_ABLATIONS;
 overrideSkipPhysical = exist('KERR_NARMA_SKIP_PHYSICAL_ABLATIONS','var') && KERR_NARMA_SKIP_PHYSICAL_ABLATIONS;
 overrideSkipBaselines = exist('KERR_NARMA_SKIP_BASELINES','var') && KERR_NARMA_SKIP_BASELINES;
+overrideDisablePlots = exist('KERR_NARMA_DISABLE_PLOTS','var') && KERR_NARMA_DISABLE_PLOTS;
 if exist('KERR_NARMA_OUTPUT_TAG','var')
     overrideOutputTag = KERR_NARMA_OUTPUT_TAG;
 else
@@ -101,7 +102,108 @@ overrideValidateFeatureCache = exist('KERR_NARMA_VALIDATE_FEATURE_CACHE','var') 
     KERR_NARMA_VALIDATE_FEATURE_CACHE;
 overrideSaveRawFeatures = exist('KERR_NARMA_SAVE_RAW_FEATURES','var') && ...
     KERR_NARMA_SAVE_RAW_FEATURES;
-clearvars -except overrideQuick overrideSmoke overrideKSweep overrideJSweep overrideFeatureAblations overrideSkipPhysical overrideSkipBaselines overrideOutputTag overrideKList overrideJList overrideJSweepKList overrideSeedOffset overrideBaseK overrideBaseJ overrideFeatureCases overrideFeatureModes overrideBaseFeatureMode overrideCustomInputRaw overrideCustomInputEncoded overrideCustomTarget overrideTaskLabel overrideValidateFeatureCache overrideSaveRawFeatures;
+overrideSaveCompactFeatures = exist('KERR_NARMA_SAVE_COMPACT_FEATURES','var') && ...
+    KERR_NARMA_SAVE_COMPACT_FEATURES;
+if exist('KERR_NARMA_INPUT_MODE','var')
+    overrideInputMode = char(KERR_NARMA_INPUT_MODE);
+else
+    overrideInputMode = '';
+end
+if exist('KERR_NARMA_GDELTA_MODE','var')
+    overrideGDeltaMode = char(KERR_NARMA_GDELTA_MODE);
+else
+    overrideGDeltaMode = 'heterogeneous';
+end
+if exist('KERR_NARMA_GF_MODE','var')
+    overrideGFMode = char(KERR_NARMA_GF_MODE);
+else
+    overrideGFMode = 'heterogeneous';
+end
+overrideDisableStaticDisorder = exist('KERR_NARMA_DISABLE_STATIC_DISORDER','var') && ...
+    KERR_NARMA_DISABLE_STATIC_DISORDER;
+if exist('KERR_NARMA_COPY_DISORDER_SCALE','var')
+    overrideCopyDisorderScale = KERR_NARMA_COPY_DISORDER_SCALE;
+else
+    overrideCopyDisorderScale = 1;
+end
+if exist('KERR_NARMA_COPY_DETUNING_DISORDER','var')
+    overrideCopyDetuningDisorder = KERR_NARMA_COPY_DETUNING_DISORDER;
+else
+    overrideCopyDetuningDisorder = [];
+end
+if exist('KERR_NARMA_PROTOCOL_MODE','var')
+    overrideProtocolMode = char(KERR_NARMA_PROTOCOL_MODE);
+else
+    overrideProtocolMode = 'development';
+end
+if exist('KERR_NARMA_NPC','var')
+    overrideNPC = KERR_NARMA_NPC;
+else
+    overrideNPC = [];
+end
+if exist('KERR_NARMA_TAP_DELAYS','var')
+    overrideTapDelays = KERR_NARMA_TAP_DELAYS;
+else
+    overrideTapDelays = [];
+end
+if exist('KERR_NARMA_STEPS_PER_SAMPLE','var')
+    overrideStepsPerSample = KERR_NARMA_STEPS_PER_SAMPLE;
+else
+    overrideStepsPerSample = [];
+end
+if exist('KERR_NARMA_DT','var')
+    overrideDt = KERR_NARMA_DT;
+else
+    overrideDt = [];
+end
+if exist('KERR_NARMA_INPUT_MASK','var')
+    overrideInputMask = KERR_NARMA_INPUT_MASK;
+else
+    overrideInputMask = [];
+end
+if exist('KERR_NARMA_INPUT_BIAS','var')
+    overrideInputBias = KERR_NARMA_INPUT_BIAS;
+else
+    overrideInputBias = [];
+end
+if exist('KERR_NARMA_NUM_VIRTUAL','var')
+    overrideNumVirtual = KERR_NARMA_NUM_VIRTUAL;
+else
+    overrideNumVirtual = [];
+end
+if exist('KERR_NARMA_INPUT_GAIN_SCALE','var')
+    overrideInputGainScale = KERR_NARMA_INPUT_GAIN_SCALE;
+else
+    overrideInputGainScale = [];
+end
+if exist('KERR_NARMA_VIRTUAL_NODE_IDX','var')
+    overrideVirtualNodeIdx = KERR_NARMA_VIRTUAL_NODE_IDX;
+else
+    overrideVirtualNodeIdx = [];
+end
+if exist('KERR_NARMA_READOUT_VARIANTS','var')
+    overrideReadoutVariants = KERR_NARMA_READOUT_VARIANTS;
+else
+    overrideReadoutVariants = struct([]);
+end
+if exist('KERR_NARMA_FEATURE_BUDGET_VARIANTS','var')
+    overrideFeatureBudgetVariants = KERR_NARMA_FEATURE_BUDGET_VARIANTS;
+else
+    overrideFeatureBudgetVariants = struct([]);
+end
+if exist('KERR_NARMA_FEATURE_BUDGET_LAMBDA_MAP','var')
+    overrideFeatureBudgetLambdaMap = KERR_NARMA_FEATURE_BUDGET_LAMBDA_MAP;
+else
+    overrideFeatureBudgetLambdaMap = [];
+end
+if exist('KERR_NARMA_LAMBDA_GRID','var')
+    overrideLambdaGrid = KERR_NARMA_LAMBDA_GRID;
+else
+    overrideLambdaGrid = [];
+end
+overrideLockedPair = exist('KERR_NARMA_LOCKED_PAIR','var') && ...
+    KERR_NARMA_LOCKED_PAIR;
+clearvars -except overrideQuick overrideSmoke overrideKSweep overrideJSweep overrideFeatureAblations overrideSkipPhysical overrideSkipBaselines overrideDisablePlots overrideOutputTag overrideKList overrideJList overrideJSweepKList overrideSeedOffset overrideBaseK overrideBaseJ overrideFeatureCases overrideFeatureModes overrideBaseFeatureMode overrideCustomInputRaw overrideCustomInputEncoded overrideCustomTarget overrideTaskLabel overrideValidateFeatureCache overrideSaveRawFeatures overrideSaveCompactFeatures overrideInputMode overrideGDeltaMode overrideGFMode overrideDisableStaticDisorder overrideCopyDisorderScale overrideCopyDetuningDisorder overrideProtocolMode overrideNPC overrideTapDelays overrideStepsPerSample overrideDt overrideInputMask overrideInputBias overrideNumVirtual overrideInputGainScale overrideVirtualNodeIdx overrideReadoutVariants overrideFeatureBudgetVariants overrideFeatureBudgetLambdaMap overrideLambdaGrid overrideLockedPair;
 close all; clc;
 
 %% ========================== User configuration ============================
@@ -119,6 +221,12 @@ cfg.masterSeed = 132 + 1009*cfg.seedOffset;
 cfg.reservoirSeed = 22 + 2003*cfg.seedOffset;
 cfg.maskSeed = 900 + 3001*cfg.seedOffset;
 cfg.copySeed = 1234 + 4001*cfg.seedOffset;
+cfg.protocolMode = lower(strtrim(overrideProtocolMode));
+validProtocolModes = {'development','selection','locked'};
+if ~ismember(cfg.protocolMode, validProtocolModes)
+    error('KERR_NARMA_PROTOCOL_MODE must be development, selection, or locked.');
+end
+cfg.evaluateTest = ~strcmp(cfg.protocolMode, 'selection');
 
 % Dataset and splitting
 cfg.numSamples = 22000;
@@ -146,6 +254,7 @@ cfg.numReservoirs = 3;
 cfg.copyDetuningDisorder = 0.05;
 cfg.copyMaskDisorder = 0.10;
 cfg.copyDriveDisorder = 0.10;
+cfg.copyJDisorder = 0.04;
 
 % PCA and tapped delays
 cfg.nPC = 350;
@@ -198,6 +307,7 @@ cfg.featureCases = overrideFeatureCases;
 cfg.validateFeatureCache = overrideValidateFeatureCache;
 cfg.saveLargeMatrices = false;
 cfg.saveRawFeatures = overrideSaveRawFeatures;
+cfg.saveCompactFeatures = overrideSaveCompactFeatures;
 cfg.makePlots = true;
 cfg.quickTest = false;
 cfg.smokeTest = false;
@@ -227,6 +337,25 @@ if overrideFeatureAblations
 end
 if overrideSkipPhysical
     cfg.runPhysicalAblations = false;
+end
+if overrideDisablePlots
+    cfg.makePlots = false;
+end
+
+if ~isscalar(overrideCopyDisorderScale) || ~isfinite(overrideCopyDisorderScale) || ...
+        overrideCopyDisorderScale < 0
+    error('KERR_NARMA_COPY_DISORDER_SCALE must be a nonnegative finite scalar.');
+end
+cfg.copyDetuningDisorder = overrideCopyDisorderScale*cfg.copyDetuningDisorder;
+cfg.copyMaskDisorder = overrideCopyDisorderScale*cfg.copyMaskDisorder;
+cfg.copyDriveDisorder = overrideCopyDisorderScale*cfg.copyDriveDisorder;
+cfg.copyJDisorder = overrideCopyDisorderScale*cfg.copyJDisorder;
+if ~isempty(overrideCopyDetuningDisorder)
+    if ~isscalar(overrideCopyDetuningDisorder) || ...
+            ~isfinite(overrideCopyDetuningDisorder) || overrideCopyDetuningDisorder < 0
+        error('KERR_NARMA_COPY_DETUNING_DISORDER must be a nonnegative finite scalar.');
+    end
+    cfg.copyDetuningDisorder = overrideCopyDetuningDisorder;
 end
 
 if cfg.quickTest
@@ -306,6 +435,144 @@ if overrideSkipPhysical
     cfg.runPhysicalAblations = false;
 end
 
+% Explicit revision-protocol overrides are applied after quick/smoke presets.
+if ~isempty(overrideNPC)
+    if ~isscalar(overrideNPC) || ~isfinite(overrideNPC) || ...
+            overrideNPC < 1 || overrideNPC ~= floor(overrideNPC)
+        error('KERR_NARMA_NPC must be a positive integer.');
+    end
+    cfg.nPC = overrideNPC;
+end
+if ~isempty(overrideTapDelays)
+    if ~isvector(overrideTapDelays) || any(~isfinite(overrideTapDelays)) || ...
+            any(overrideTapDelays < 0) || any(overrideTapDelays ~= floor(overrideTapDelays))
+        error('KERR_NARMA_TAP_DELAYS must contain nonnegative integers.');
+    end
+    cfg.tapDelays = unique(overrideTapDelays(:).', 'stable');
+end
+if ~isempty(overrideStepsPerSample)
+    if ~isscalar(overrideStepsPerSample) || ~isfinite(overrideStepsPerSample) || ...
+            overrideStepsPerSample < 1 || overrideStepsPerSample ~= floor(overrideStepsPerSample)
+        error('KERR_NARMA_STEPS_PER_SAMPLE must be a positive integer.');
+    end
+    cfg.stepsPerSample = overrideStepsPerSample;
+end
+if ~isempty(overrideDt)
+    if ~isscalar(overrideDt) || ~isfinite(overrideDt) || overrideDt <= 0
+        error('KERR_NARMA_DT must be a positive finite scalar.');
+    end
+    cfg.dt = overrideDt;
+end
+if ~isempty(overrideNumVirtual)
+    if ~isscalar(overrideNumVirtual) || ~isfinite(overrideNumVirtual) || ...
+            overrideNumVirtual < 1 || overrideNumVirtual ~= floor(overrideNumVirtual)
+        error('KERR_NARMA_NUM_VIRTUAL must be a positive integer.');
+    end
+    cfg.numVirtual = overrideNumVirtual;
+end
+if cfg.numVirtual > cfg.stepsPerSample
+    error('The number of virtual samples cannot exceed integration steps per sample.');
+end
+cfg.virtualNodeIdx = unique(round(linspace(round(0.20*cfg.stepsPerSample), ...
+    cfg.stepsPerSample, cfg.numVirtual)));
+cfg.numVirtual = numel(cfg.virtualNodeIdx);
+if ~isempty(overrideVirtualNodeIdx)
+    if ~isvector(overrideVirtualNodeIdx) || any(~isfinite(overrideVirtualNodeIdx)) || ...
+            any(overrideVirtualNodeIdx < 1) || ...
+            any(overrideVirtualNodeIdx > cfg.stepsPerSample) || ...
+            any(overrideVirtualNodeIdx ~= floor(overrideVirtualNodeIdx))
+        error(['KERR_NARMA_VIRTUAL_NODE_IDX must contain integer integration ' ...
+            'indices within the input-hold interval.']);
+    end
+    cfg.virtualNodeIdx = unique(overrideVirtualNodeIdx(:).', 'sorted');
+    cfg.numVirtual = numel(cfg.virtualNodeIdx);
+end
+if isempty(overrideInputGainScale)
+    cfg.inputGainScale = 1;
+else
+    if ~isscalar(overrideInputGainScale) || ~isfinite(overrideInputGainScale) || ...
+            overrideInputGainScale <= 0
+        error('KERR_NARMA_INPUT_GAIN_SCALE must be a positive finite scalar.');
+    end
+    cfg.inputGainScale = overrideInputGainScale;
+end
+if ~isempty(overrideLambdaGrid)
+    if ~isvector(overrideLambdaGrid) || any(~isfinite(overrideLambdaGrid)) || ...
+            any(overrideLambdaGrid <= 0)
+        error('KERR_NARMA_LAMBDA_GRID must contain positive finite values.');
+    end
+    cfg.lambdaGrid = unique(overrideLambdaGrid(:).', 'sorted');
+end
+cfg.readoutVariants = overrideReadoutVariants(:);
+requiredVariantFields = {'label','virtualNodeIdx','tapDelays','nPC'};
+for q = 1:numel(cfg.readoutVariants)
+    for f = 1:numel(requiredVariantFields)
+        assert(isfield(cfg.readoutVariants(q), requiredVariantFields{f}), ...
+            'Readout variant %d is missing field %s.', q, requiredVariantFields{f});
+    end
+    nodes = cfg.readoutVariants(q).virtualNodeIdx(:).';
+    taps = cfg.readoutVariants(q).tapDelays(:).';
+    retainedPC = cfg.readoutVariants(q).nPC;
+    assert(~isempty(nodes) && all(ismember(nodes, cfg.virtualNodeIdx)), ...
+        'Readout variant nodes must be a subset of the simulated union nodes.');
+    assert(~isempty(taps) && all(isfinite(taps)) && all(taps >= 0) && ...
+        all(taps == floor(taps)), 'Readout variant taps must be nonnegative integers.');
+    assert(isscalar(retainedPC) && isfinite(retainedPC) && retainedPC >= 1 && ...
+        retainedPC == floor(retainedPC), 'Readout variant nPC must be a positive integer.');
+    cfg.readoutVariants(q).virtualNodeIdx = unique(nodes, 'stable');
+    cfg.readoutVariants(q).tapDelays = unique(taps, 'stable');
+end
+cfg.featureBudgetVariants = overrideFeatureBudgetVariants(:);
+cfg.featureBudgetLambdaMap = overrideFeatureBudgetLambdaMap;
+requiredBudgetFields = {'label','tapDelays','nPC'};
+for q = 1:numel(cfg.featureBudgetVariants)
+    for f = 1:numel(requiredBudgetFields)
+        assert(isfield(cfg.featureBudgetVariants(q), requiredBudgetFields{f}), ...
+            'Feature-budget variant %d is missing field %s.', q, ...
+            requiredBudgetFields{f});
+    end
+    taps = cfg.featureBudgetVariants(q).tapDelays(:).';
+    retainedPC = cfg.featureBudgetVariants(q).nPC;
+    assert(~isempty(taps) && all(isfinite(taps)) && all(taps >= 0) && ...
+        all(taps == floor(taps)), ...
+        'Feature-budget variant taps must be nonnegative integers.');
+    assert(isscalar(retainedPC) && isfinite(retainedPC) && retainedPC >= 1 && ...
+        retainedPC == floor(retainedPC), ...
+        'Feature-budget variant nPC must be a positive integer.');
+    cfg.featureBudgetVariants(q).tapDelays = unique(taps, 'stable');
+    if isfield(cfg.featureBudgetVariants(q),'lambdaGrid') && ...
+            ~isempty(cfg.featureBudgetVariants(q).lambdaGrid)
+        variantLambda = cfg.featureBudgetVariants(q).lambdaGrid(:).';
+        assert(all(isfinite(variantLambda)) && all(variantLambda > 0), ...
+            'Feature-budget lambda grids must be positive and finite.');
+        cfg.featureBudgetVariants(q).lambdaGrid = unique(variantLambda,'sorted');
+    end
+end
+if ~isempty(cfg.featureBudgetLambdaMap)
+    expectedLambdaCount = size(cfg.featureCases,1)*numel(cfg.featureModes)* ...
+        numel(cfg.featureBudgetVariants);
+    assert(numel(cfg.featureBudgetLambdaMap) == expectedLambdaCount && ...
+        all(isfinite(cfg.featureBudgetLambdaMap(:))) && ...
+        all(cfg.featureBudgetLambdaMap(:) > 0), ...
+        'Feature-budget lambda map has invalid dimensions or values.');
+    cfg.featureBudgetLambdaMap = reshape(cfg.featureBudgetLambdaMap, ...
+        size(cfg.featureCases,1),numel(cfg.featureModes), ...
+        numel(cfg.featureBudgetVariants));
+end
+
+if ~strcmp(cfg.protocolMode, 'development') && isempty(overrideOutputTag)
+    error('Selection and locked runs require a unique KERR_NARMA_OUTPUT_TAG.');
+end
+if strcmp(cfg.protocolMode, 'selection')
+    cfg.makePlots = false;
+elseif strcmp(cfg.protocolMode, 'locked') && ...
+        (cfg.runKSweep || cfg.runJSweep || cfg.runPhysicalAblations || ...
+        (cfg.runFeatureAblations && ~overrideLockedPair))
+    error(['Locked mode forbids sweeps and ordinary ablations; only the ' ...
+        'predeclared locked feature pair is allowed.']);
+end
+cfg.lockedPair = overrideLockedPair;
+
 %% ======================== Base Kerr reservoir model =======================
 P = makeBaseKerrReservoir(cfg.reservoirSeed);
 if ~isempty(overrideBaseK)
@@ -315,11 +582,42 @@ if ~isempty(overrideBaseJ)
     P.J0 = overrideBaseJ;
     P.J = P.J0*P.Adj;
 end
+P.gDelta = cfg.inputGainScale*P.gDelta;
+P.gF = cfg.inputGainScale*P.gF;
+if overrideDisableStaticDisorder
+    P.Delta0 = linspace(-1.05,1.05,P.N).';
+end
+P.gDelta = applyEncodingPattern(P.gDelta, overrideGDeltaMode, 'gDelta');
+P.gF = applyEncodingPattern(P.gF, overrideGFMode, 'gF');
+if ~isempty(overrideInputMode)
+    validInputModes = {'detuning','amplitude','detuning+amplitude'};
+    overrideInputMode = lower(strtrim(overrideInputMode));
+    if ~ismember(overrideInputMode, validInputModes)
+        error('KERR_NARMA_INPUT_MODE must be detuning, amplitude, or detuning+amplitude.');
+    end
+    P.inputMode = overrideInputMode;
+end
+cfg.encodingGDeltaMode = lower(strtrim(overrideGDeltaMode));
+cfg.encodingGFMode = lower(strtrim(overrideGFMode));
+cfg.staticDisorderEnabled = ~overrideDisableStaticDisorder;
+cfg.inputMode = P.inputMode;
 
 %% ======================== Input mask construction =========================
 rng(cfg.maskSeed);
-cfg.inputMask = 2*rand(cfg.stepsPerSample,1) - 1;
-cfg.inputBias = cfg.maskBias*(2*rand(cfg.stepsPerSample,1) - 1);
+if isempty(overrideInputMask)
+    cfg.inputMask = 2*rand(cfg.stepsPerSample,1) - 1;
+else
+    cfg.inputMask = overrideInputMask(:);
+    assert(numel(cfg.inputMask)==cfg.stepsPerSample && all(isfinite(cfg.inputMask)), ...
+        'KERR_NARMA_INPUT_MASK must be finite and match stepsPerSample.');
+end
+if isempty(overrideInputBias)
+    cfg.inputBias = cfg.maskBias*(2*rand(cfg.stepsPerSample,1) - 1);
+else
+    cfg.inputBias = overrideInputBias(:);
+    assert(numel(cfg.inputBias)==cfg.stepsPerSample && all(isfinite(cfg.inputBias)), ...
+        'KERR_NARMA_INPUT_BIAS must be finite and match stepsPerSample.');
+end
 
 %% ======================== Input and target ================================
 if isempty(overrideCustomInputRaw)
@@ -339,7 +637,11 @@ fprintf('%s dataset seed = %d | max y = %.4f | var y = %.5g\n', ...
     cfg.taskLabel,datasetSeed,max(yN),var(yN,1));
 
 %% ======================== Indexing ========================================
-startIdx = cfg.washout + max([20, cfg.tapDelays]) + 1;
+allTapDelays = cfg.tapDelays;
+for q = 1:numel(cfg.readoutVariants)
+    allTapDelays = [allTapDelays cfg.readoutVariants(q).tapDelays]; %#ok<AGROW>
+end
+startIdx = cfg.washout + max([20, allTapDelays]) + 1;
 idxTrain = startIdx:(startIdx + cfg.numTrain - 1);
 idxVal   = (idxTrain(end)+1):(idxTrain(end)+cfg.numVal);
 idxTest  = (idxVal(end)+1):(idxVal(end)+cfg.numTest);
@@ -348,9 +650,17 @@ idxTrainVal = [idxTrain idxVal];
 if idxTest(end) > cfg.numSamples
     error('Not enough samples for the requested washout/train/val/test split.');
 end
+cfg.idxTrain = idxTrain;
+cfg.idxVal = idxVal;
+cfg.idxTestReserved = idxTest;
+if ~cfg.evaluateTest
+    idxTest = [];
+end
 
 %% ======================== Main simulation =================================
 fprintf('\n=== Kerr %s ensemble-masked publication run ===\n',cfg.taskLabel);
+fprintf('Protocol mode = %s | test evaluation enabled = %d\n', ...
+    cfg.protocolMode, cfg.evaluateTest);
 fprintf('Samples = %d | N = %d | reservoirs = %d | virtual nodes = %d | taps = %d\n', ...
     cfg.numSamples, P.N, cfg.numReservoirs, cfg.numVirtual, numel(cfg.tapDelays));
 fprintf('dt = %.5g | steps/input = %d | T_sample = %.5g\n', ...
@@ -423,6 +733,10 @@ fprintf('Publication run true test R^2      = %.4f\n', main.R2true);
 results = struct();
 results.main = main;
 results.mainInfo = mainInfo;
+if ~isempty(cfg.readoutVariants)
+    results.readoutVariants = evaluateReadoutVariantsFromUnion( ...
+        Xvirt, yN, P, cfg, idxTrain, idxVal, idxTest);
+end
 
 if cfg.runBaselines
     % Baseline 1: same compressed reservoir, no temporal taps.
@@ -546,7 +860,10 @@ if cfg.saveLargeMatrices
         'pcaInfo','Xvirt','Zvirt','Xall','betaFinalAll','-v7.3');
 elseif cfg.saveRawFeatures
     save(summaryFile, 'cfg','P','uN','uEnc','yN','datasetSeed','results', ...
-        'pcaInfo','Xvirt','betaFinalAll','-v7.3');
+        'pcaInfo','Xvirt','Zvirt','betaFinalAll','-v7.3');
+elseif cfg.saveCompactFeatures
+    save(summaryFile, 'cfg','P','uN','uEnc','yN','datasetSeed','results', ...
+        'pcaInfo','Zvirt','betaFinalAll','-v7.3');
 else
     save(summaryFile, 'cfg','P','uN','uEnc','yN','datasetSeed','results', ...
         'pcaInfo','betaFinalAll','-v7.3');
@@ -559,6 +876,14 @@ if isfield(results, 'JSweep')
 end
 if isfield(results, 'featureAblation')
     writeFeatureAblationCSV(results.featureAblation, [cfg.outputPrefix '_FeatureAblations_summary.csv']);
+    if ~isempty(cfg.featureBudgetVariants)
+        writeFeatureBudgetVariantsCSV(results.featureAblation, ...
+            [cfg.outputPrefix '_FeatureBudgetVariants_summary.csv']);
+    end
+end
+if isfield(results, 'readoutVariants')
+    writeReadoutVariantsCSV(results.readoutVariants, ...
+        [cfg.outputPrefix '_ReadoutVariants_summary.csv']);
 end
 fprintf('Saved summary to %s\n', summaryFile);
 
@@ -587,6 +912,21 @@ function P = makeBaseKerrReservoir(seed)
     P.gDelta = 0.72*mask;
     P.gF     = 0.10*circshift(mask,3);
     P.inputMode = 'detuning+amplitude';
+end
+
+function values = applyEncodingPattern(values, mode, label)
+    mode = lower(strtrim(mode));
+    switch mode
+        case {'heterogeneous','hetero'}
+            return;
+        case {'uniform','common'}
+            amplitude = norm(values,2)/sqrt(numel(values));
+            values = amplitude*ones(size(values));
+        case {'zero','off','none'}
+            values = zeros(size(values));
+        otherwise
+            error('Unknown %s encoding mode "%s".', label, mode);
+    end
 end
 
 function [uN, uEnc, yN, usedSeed] = makeStableNarma10Dataset(numSamples, baseSeed)
@@ -647,7 +987,7 @@ function Pcopy = makeReservoirCopy(P, cfg, r)
     Pcopy.Delta0 = P.Delta0 + cfg.copyDetuningDisorder*randn(P.N,1);
     Pcopy.gDelta = P.gDelta .* (1 + cfg.copyMaskDisorder*randn(P.N,1));
     Pcopy.gF     = P.gF     .* (1 + cfg.copyDriveDisorder*randn(P.N,1));
-    Jnoise = 1 + 0.04*randn(P.N);
+    Jnoise = 1 + cfg.copyJDisorder*randn(P.N);
     Jnoise = 0.5*(Jnoise + Jnoise.');
     Pcopy.J = P.J .* Jnoise;
     Pcopy.J = Pcopy.J - diag(diag(Pcopy.J));
@@ -945,6 +1285,83 @@ function [Z, info] = pcaProjectTrainOnly(X, idxTrain, nPC)
     info.singularValues = svals;
 end
 
+function variants = evaluateReadoutVariantsFromUnion(Xunion, y, P, cfg, ...
+        idxTrain, idxVal, idxTest)
+    definitions = cfg.readoutVariants;
+    nVariants = numel(definitions);
+    variants.label = strings(nVariants,1);
+    variants.virtualNodeIdx = cell(nVariants,1);
+    variants.tapDelays = cell(nVariants,1);
+    variants.nPCRequested = nan(nVariants,1);
+    variants.nPCRetained = nan(nVariants,1);
+    variants.rawFeatureDim = nan(nVariants,1);
+    variants.tappedFeatureDim = nan(nVariants,1);
+    variants.valNRMSE = nan(nVariants,1);
+    variants.testNRMSE = nan(nVariants,1);
+    variants.R2true = nan(nVariants,1);
+    variants.R2corr = nan(nVariants,1);
+    variants.lambdaBest = nan(nVariants,1);
+    variants.readout = cell(nVariants,1);
+    variants.pcaInfo = cell(nVariants,1);
+
+    fprintf('\n=== Cached readout variants from union virtual states ===\n');
+    for q = 1:nVariants
+        definition = definitions(q);
+        Xvariant = subsetVirtualFeatureBlocks(Xunion, P, cfg, ...
+            definition.virtualNodeIdx);
+        [Zvariant, pcaVariant] = pcaProjectTrainOnly( ...
+            Xvariant, idxTrain, definition.nPC);
+        Xreadout = [ones(cfg.numSamples,1), ...
+            addTappedDelays(Zvariant, definition.tapDelays)];
+        readout = trainValidateTestReadout(Xreadout, y, idxTrain, idxVal, ...
+            idxTest, cfg.lambdaGrid, char(definition.label));
+
+        variants.label(q) = string(definition.label);
+        variants.virtualNodeIdx{q} = definition.virtualNodeIdx(:).';
+        variants.tapDelays{q} = definition.tapDelays(:).';
+        variants.nPCRequested(q) = definition.nPC;
+        variants.nPCRetained(q) = size(Zvariant,2);
+        variants.rawFeatureDim(q) = size(Xvariant,2);
+        variants.tappedFeatureDim(q) = size(Xreadout,2);
+        variants.valNRMSE(q) = readout.valNRMSE;
+        variants.testNRMSE(q) = readout.NRMSE;
+        variants.R2true(q) = readout.R2true;
+        variants.R2corr(q) = readout.R2corr;
+        variants.lambdaBest(q) = readout.lambdaBest;
+        variants.readout{q} = readout;
+        variants.pcaInfo{q} = pcaVariant;
+
+        fprintf(['  %s | virtual=%d | taps=%d | PCs=%d | coefficients=%d | ' ...
+            'val NRMSE=%.4f | test NRMSE=%.4f\n'], char(variants.label(q)), ...
+            numel(definition.virtualNodeIdx), numel(definition.tapDelays), ...
+            size(Zvariant,2), size(Xreadout,2), readout.valNRMSE, readout.NRMSE);
+    end
+end
+
+function Xsubset = subsetVirtualFeatureBlocks(Xunion, P, cfg, requestedNodes)
+    unionNodes = cfg.virtualNodeIdx(:).';
+    requestedNodes = requestedNodes(:).';
+    [found, positions] = ismember(requestedNodes, unionNodes);
+    assert(all(found), 'Requested virtual nodes are absent from union cache.');
+    localDim = numel(makeLocalFeatures(complex(zeros(P.N,1)), cfg.featureMode));
+    blocksPerCopy = numel(unionNodes);
+    widthPerCopy = blocksPerCopy*localDim;
+    assert(size(Xunion,2) == cfg.numReservoirs*widthPerCopy, ...
+        'Union feature width does not match copy/block accounting.');
+
+    selectedColumns = zeros(1, cfg.numReservoirs*numel(requestedNodes)*localDim);
+    cursor = 0;
+    for r = 1:cfg.numReservoirs
+        copyOffset = (r-1)*widthPerCopy;
+        for p = positions
+            columns = copyOffset + (p-1)*localDim + (1:localDim);
+            selectedColumns(cursor+(1:localDim)) = columns;
+            cursor = cursor + localDim;
+        end
+    end
+    Xsubset = Xunion(:,selectedColumns);
+end
+
 function [result, info] = evaluateReservoirCase(uEnc, yN, Pcase, cfg, idxTrain, idxVal, idxTest, label)
     fprintf('  Case "%s": K = %.4g | J0 = %.4g | featureMode = %s\n', ...
         label, Pcase.K, Pcase.J0, cfg.featureMode);
@@ -1021,9 +1438,21 @@ function sweep = runKSweepCases(uEnc, yN, P, cfg, idxTrain, idxVal, idxTest)
             Klist(q), res.valNRMSE, res.NRMSE, res.R2true);
     end
 
-    [sweep.bestNRMSE, bestIdx] = min(sweep.NRMSE);
+    if cfg.evaluateTest
+        [sweep.bestNRMSE, bestIdx] = min(sweep.NRMSE);
+        sweep.bestValNRMSE = sweep.valNRMSE(bestIdx);
+        selectionLabel = 'test';
+        selectedMetric = sweep.bestNRMSE;
+    else
+        [sweep.bestValNRMSE, bestIdx] = min(sweep.valNRMSE);
+        sweep.bestNRMSE = NaN;
+        selectionLabel = 'validation';
+        selectedMetric = sweep.bestValNRMSE;
+    end
     sweep.bestK = Klist(bestIdx);
-    fprintf('Best K in sweep: K = %.4g | test NRMSE = %.4f\n', sweep.bestK, sweep.bestNRMSE);
+    sweep.selectionMetric = selectionLabel;
+    fprintf('Best K in sweep: K = %.4g | %s NRMSE = %.4f\n', ...
+        sweep.bestK, selectionLabel, selectedMetric);
 end
 
 function sweep = runJSweepCases(uEnc, yN, P, cfg, idxTrain, idxVal, idxTest, main, mainInfo)
@@ -1080,16 +1509,27 @@ function sweep = runJSweepCases(uEnc, yN, P, cfg, idxTrain, idxVal, idxTest, mai
         end
 
         zeroIdx = find(abs(Jlist) < 1e-14, 1);
-        if ~isempty(zeroIdx)
+        if ~isempty(zeroIdx) && cfg.evaluateTest
             reference = sweep.NRMSE(q,zeroIdx);
             sweep.NRMSEgainVsJ0(q,:) = reference - sweep.NRMSE(q,:);
             sweep.relativeGainVsJ0Pct(q,:) = 100*sweep.NRMSEgainVsJ0(q,:)/reference;
         end
 
-        [sweep.bestNRMSE(q,1), bestIdx] = min(sweep.NRMSE(q,:));
+        if cfg.evaluateTest
+            [sweep.bestNRMSE(q,1), bestIdx] = min(sweep.NRMSE(q,:));
+            sweep.bestValNRMSE(q,1) = sweep.valNRMSE(q,bestIdx);
+            selectionLabel = 'test';
+            selectedMetric = sweep.bestNRMSE(q,1);
+        else
+            [sweep.bestValNRMSE(q,1), bestIdx] = min(sweep.valNRMSE(q,:));
+            sweep.bestNRMSE(q,1) = NaN;
+            selectionLabel = 'validation';
+            selectedMetric = sweep.bestValNRMSE(q,1);
+        end
         sweep.bestJ(q,1) = Jlist(bestIdx);
-        fprintf('Best J at K = %.4g: J = %.4g | test NRMSE = %.4f\n', ...
-            Kcases(q), sweep.bestJ(q), sweep.bestNRMSE(q));
+        sweep.selectionMetric = selectionLabel;
+        fprintf('Best J at K = %.4g: J = %.4g | %s NRMSE = %.4f\n', ...
+            Kcases(q), sweep.bestJ(q), selectionLabel, selectedMetric);
     end
 end
 
@@ -1122,6 +1562,7 @@ function featureAblation = runFeatureAblationCases(uEnc, yN, P, cfg, ...
     featureAblation.rawFeatureDim = nan(nCases,nM);
     featureAblation.readout = cell(nCases,nM);
     featureAblation.caseInfo = cell(nCases,nM);
+    featureAblation.budgetVariants = cell(nCases,nM);
 
     for q = 1:nCases
         Pcase = P;
@@ -1141,8 +1582,13 @@ function featureAblation = runFeatureAblationCases(uEnc, yN, P, cfg, ...
         for m = 1:nM
             cfgCase = cfg;
             cfgCase.featureMode = modes{m};
+            if ~isempty(cfg.featureBudgetLambdaMap)
+                cfgCase.featureBudgetLambdaVector = reshape( ...
+                    cfg.featureBudgetLambdaMap(q,m,:),1,[]);
+            end
             label = sprintf('%s/%s', caseLabels{q}, modes{m});
             matchesMainFeature = strcmpi(modes{m}, mainInfo.featureMode);
+            XvirtCase = featureMatrixFromVirtualStates(statesCase, P.N, modes{m});
             if matchesMain && matchesMainFeature
                 res = main;
                 info = mainInfo;
@@ -1150,11 +1596,15 @@ function featureAblation = runFeatureAblationCases(uEnc, yN, P, cfg, ...
                 fprintf('  Reusing fitted main %s result for %s.\n', ...
                     mainInfo.featureMode, caseLabels{q});
             else
-                XvirtCase = featureMatrixFromVirtualStates(statesCase, P.N, modes{m});
                 [res, info] = evaluateFeatureMatrixCase(XvirtCase, betaFinalCase, ...
                     yN, Pcase, cfgCase, idxTrain, idxVal, idxTest, label);
-                clear XvirtCase;
             end
+            if ~isempty(cfg.featureBudgetVariants)
+                featureAblation.budgetVariants{q,m} = ...
+                    evaluateFeatureBudgetVariants(XvirtCase,yN,cfgCase, ...
+                    idxTrain,idxVal,idxTest,label);
+            end
+            clear XvirtCase;
 
             featureAblation.NRMSE(q,m) = res.NRMSE;
             featureAblation.valNRMSE(q,m) = res.valNRMSE;
@@ -1168,6 +1618,51 @@ function featureAblation = runFeatureAblationCases(uEnc, yN, P, cfg, ...
                 caseLabels{q}, modes{m}, res.NRMSE, res.R2true, info.rawFeatureDim);
         end
         clear statesCase betaFinalCase;
+    end
+end
+
+function variants = evaluateFeatureBudgetVariants(Xvirt,y,cfg,idxTrain, ...
+        idxVal,idxTest,caseLabel)
+    definitions = cfg.featureBudgetVariants;
+    nVariants = numel(definitions);
+    maxPC = max([definitions.nPC]);
+    [Zmax,pcaInfo] = pcaProjectTrainOnly(Xvirt,idxTrain,maxPC);
+    variants.label = strings(nVariants,1);
+    variants.tapDelays = cell(nVariants,1);
+    variants.nPCRequested = nan(nVariants,1);
+    variants.nPCRetained = nan(nVariants,1);
+    variants.readoutCoefficients = nan(nVariants,1);
+    variants.valNRMSE = nan(nVariants,1);
+    variants.testNRMSE = nan(nVariants,1);
+    variants.R2true = nan(nVariants,1);
+    variants.lambdaBest = nan(nVariants,1);
+    variants.readout = cell(nVariants,1);
+    variants.singularValues = pcaInfo.singularValues;
+    for q = 1:nVariants
+        definition = definitions(q);
+        nRetained = min(definition.nPC,size(Zmax,2));
+        Xreadout = [ones(cfg.numSamples,1), ...
+            addTappedDelays(Zmax(:,1:nRetained),definition.tapDelays)];
+        lambdaGrid = cfg.lambdaGrid;
+        if isfield(definition,'lambdaGrid') && ~isempty(definition.lambdaGrid)
+            lambdaGrid = definition.lambdaGrid;
+        end
+        if isfield(cfg,'featureBudgetLambdaVector')
+            lambdaGrid = cfg.featureBudgetLambdaVector(q);
+        end
+        label = sprintf('%s/%s',caseLabel,char(string(definition.label)));
+        readout = trainValidateTestReadout(Xreadout,y,idxTrain,idxVal, ...
+            idxTest,lambdaGrid,label);
+        variants.label(q) = string(definition.label);
+        variants.tapDelays{q} = definition.tapDelays(:).';
+        variants.nPCRequested(q) = definition.nPC;
+        variants.nPCRetained(q) = nRetained;
+        variants.readoutCoefficients(q) = size(Xreadout,2);
+        variants.valNRMSE(q) = readout.valNRMSE;
+        variants.testNRMSE(q) = readout.NRMSE;
+        variants.R2true(q) = readout.R2true;
+        variants.lambdaBest(q) = readout.lambdaBest;
+        variants.readout{q} = readout;
     end
 end
 
@@ -1340,6 +1835,69 @@ function writeFeatureAblationCSV(featureAblation, filename)
     writetable(T, filename);
 end
 
+function writeFeatureBudgetVariantsCSV(featureAblation,filename)
+    nCases = numel(featureAblation.Kcases);
+    nModes = numel(featureAblation.featureModes);
+    nVariants = numel(featureAblation.budgetVariants{1,1}.label);
+    nRows = nCases*nModes*nVariants;
+    caseLabel = strings(nRows,1);
+    featureMode = strings(nRows,1);
+    variant = strings(nRows,1);
+    K = nan(nRows,1);
+    J = nan(nRows,1);
+    nPC = nan(nRows,1);
+    tapDelays = strings(nRows,1);
+    readoutCoefficients = nan(nRows,1);
+    valNRMSE = nan(nRows,1);
+    testNRMSE = nan(nRows,1);
+    R2true = nan(nRows,1);
+    lambdaBest = nan(nRows,1);
+    cursor = 0;
+    for q = 1:nCases
+        for m = 1:nModes
+            values = featureAblation.budgetVariants{q,m};
+            assert(numel(values.label) == nVariants);
+            for v = 1:nVariants
+                cursor = cursor+1;
+                caseLabel(cursor) = featureAblation.caseLabels{q};
+                featureMode(cursor) = featureAblation.featureModes{m};
+                variant(cursor) = values.label(v);
+                K(cursor) = featureAblation.Kcases(q);
+                J(cursor) = featureAblation.Jcases(q);
+                nPC(cursor) = values.nPCRetained(v);
+                tapDelays(cursor) = join(string(values.tapDelays{v}),';');
+                readoutCoefficients(cursor) = values.readoutCoefficients(v);
+                valNRMSE(cursor) = values.valNRMSE(v);
+                testNRMSE(cursor) = values.testNRMSE(v);
+                R2true(cursor) = values.R2true(v);
+                lambdaBest(cursor) = values.lambdaBest(v);
+            end
+        end
+    end
+    assert(cursor == nRows);
+    T = table(caseLabel,featureMode,variant,K,J,nPC,tapDelays, ...
+        readoutCoefficients,valNRMSE,testNRMSE,R2true,lambdaBest);
+    writetable(T,filename);
+end
+
+function writeReadoutVariantsCSV(variants, filename)
+    nVariants = numel(variants.label);
+    virtualNodeIdx = strings(nVariants,1);
+    tapDelays = strings(nVariants,1);
+    for q = 1:nVariants
+        virtualNodeIdx(q) = join(string(variants.virtualNodeIdx{q}), ';');
+        tapDelays(q) = join(string(variants.tapDelays{q}), ';');
+    end
+    T = table(variants.label, virtualNodeIdx, tapDelays, ...
+        variants.nPCRequested, variants.nPCRetained, variants.rawFeatureDim, ...
+        variants.tappedFeatureDim, variants.valNRMSE, variants.testNRMSE, ...
+        variants.R2true, variants.R2corr, variants.lambdaBest, ...
+        'VariableNames', {'label','virtualNodeIdx','tapDelays','nPCRequested', ...
+        'nPCRetained','rawFeatureDim','readoutCoefficients','valNRMSE', ...
+        'testNRMSE','R2true','R2corr','lambdaBest'});
+    writetable(T, filename);
+end
+
 function Xt = addTappedDelays(X, delays)
     [T,D] = size(X);
     Xt = zeros(T, D*numel(delays));
@@ -1374,17 +1932,17 @@ function result = trainValidateTestReadout(Xall, y, idxTrain, idxVal, idxTest, l
 
     Xtr = XZ(idxTrain,:).';    YtrRaw = y(idxTrain).';
     Xva = XZ(idxVal,:).';      Yva = y(idxVal).';
-    Xte = XZ(idxTest,:).';     Yte = y(idxTest).';
 
     yMean = mean(YtrRaw);
     yStd  = std(YtrRaw, 0, 2);
     if yStd < 1e-14, yStd = 1; end
     Ytr = (YtrRaw - yMean)/yStd;
+    ridgeBasis = prepareRidgeBasis(Xtr,Ytr);
 
     valNRMSE = inf(numel(lambdaGrid),1);
     for ell = 1:numel(lambdaGrid)
         try
-            W = ridgeReadoutStable(Xtr, Ytr, lambdaGrid(ell));
+            W = ridgeFromPreparedBasis(ridgeBasis,lambdaGrid(ell));
             YhatValZ = (W*Xva).';
             YhatVal = yStd*YhatValZ + yMean;
             valNRMSE(ell) = nrmse(Yva(:), YhatVal(:));
@@ -1399,6 +1957,26 @@ function result = trainValidateTestReadout(Xall, y, idxTrain, idxVal, idxTest, l
     end
     lambdaBest = lambdaGrid(bestIdx);
 
+    result.label = label;
+    result.lambdaBest = lambdaBest;
+    result.valNRMSE = bestVal;
+    result.valCurve = valNRMSE;
+    result.muX = muX;
+    result.sigX = sigX;
+
+    % Selection mode deliberately supplies an empty test index. Returning
+    % NaNs prevents accidental use of held-out metrics in architecture choice.
+    if isempty(idxTest)
+        result.NRMSE = NaN;
+        result.R2corr = NaN;
+        result.R2true = NaN;
+        result.Yte = zeros(0,1);
+        result.Yhat = zeros(0,1);
+        return;
+    end
+
+    Xte = XZ(idxTest,:).';     Yte = y(idxTest).';
+
     idxTrainVal = [idxTrain idxVal];
     Xtv = XZ(idxTrainVal,:).'; YtvRaw = y(idxTrainVal).';
     yMeanTV = mean(YtvRaw);
@@ -1410,17 +1988,11 @@ function result = trainValidateTestReadout(Xall, y, idxTrain, idxVal, idxTest, l
     YhatZ = (Wbest*Xte).';
     Yhat = yStdTV*YhatZ + yMeanTV;
 
-    result.label = label;
-    result.lambdaBest = lambdaBest;
-    result.valNRMSE = bestVal;
-    result.valCurve = valNRMSE;
     result.NRMSE = nrmse(Yte(:), Yhat(:));
     result.R2corr = squaredCorrelation(Yte(:), Yhat(:));
     result.R2true = 1 - sum((Yte(:)-Yhat(:)).^2)/sum((Yte(:)-mean(Yte(:))).^2);
     result.Yte = Yte(:);
     result.Yhat = Yhat(:);
-    result.muX = muX;
-    result.sigX = sigX;
 end
 
 function [XZ, muX, sigX] = standardizeByTrain(X, idxTrain)
@@ -1429,6 +2001,36 @@ function [XZ, muX, sigX] = standardizeByTrain(X, idxTrain)
     sigX(sigX < 1e-12) = 1;
     XZ = (X - muX)./sigX;
     XZ(:,1) = 1; % explicit bias, if present
+end
+
+function prepared = prepareRidgeBasis(X,Y)
+    [D,M] = size(X);
+    prepared.X = X;
+    if D >= M
+        gram = X.'*X;
+        gram = 0.5*(gram+gram.');
+        [prepared.basis,eigenvalues] = eig(gram,'vector');
+        prepared.eigenvalues = max(real(eigenvalues),0);
+        prepared.projectedTarget = prepared.basis.'*Y.';
+        prepared.dual = true;
+    else
+        gram = X*X.';
+        gram = 0.5*(gram+gram.');
+        [prepared.basis,eigenvalues] = eig(gram,'vector');
+        prepared.eigenvalues = max(real(eigenvalues),0);
+        prepared.projectedTarget = prepared.basis.'*(X*Y.');
+        prepared.dual = false;
+    end
+end
+
+function W = ridgeFromPreparedBasis(prepared,lambda)
+    coefficients = prepared.projectedTarget./(prepared.eigenvalues+lambda);
+    solved = prepared.basis*coefficients;
+    if prepared.dual
+        W = solved.'*prepared.X.';
+    else
+        W = solved.';
+    end
 end
 
 function W = ridgeReadoutStable(X, Y, lambda)

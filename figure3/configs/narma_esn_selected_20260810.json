@@ -1,0 +1,32 @@
+{
+  "schema_version": 1,
+  "status": "esn_selection_complete",
+  "test_metrics_evaluated": false,
+  "selection_seed_count": 10,
+  "n_units_simulated": 157,
+  "tap_delays": [
+    0,
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    12,
+    15
+  ],
+  "primary_measured_states": 26,
+  "readout_coefficients_including_bias": 339,
+  "rho": 0.8,
+  "leak": 1,
+  "input_scale": 0.1,
+  "sparsity": 0.1,
+  "ridge_lambda": 0.0001,
+  "mean_validation_nrmse": 0.26301299000040651,
+  "sd_validation_nrmse": 0.019831535535690812,
+  "leave_one_out_winner_fraction": 1
+}

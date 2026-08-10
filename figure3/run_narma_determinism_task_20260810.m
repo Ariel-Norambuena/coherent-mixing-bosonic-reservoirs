@@ -1,0 +1,14 @@
+%% run_narma_determinism_task_20260810.m
+assert(exist('KERR_DETERMINISM_REPLICATE','var')==1,'Set determinism replicate 1 or 2.');
+replicate=KERR_DETERMINISM_REPLICATE; assert(ismember(replicate,[1 2]));
+KERR_NARMA_PROTOCOL_MODE='selection';KERR_NARMA_SEED_OFFSET=101;
+KERR_NARMA_BASE_K=0;KERR_NARMA_BASE_J=.65;KERR_NARMA_INPUT_GAIN_SCALE=1.25;
+KERR_NARMA_STEPS_PER_SAMPLE=55;KERR_NARMA_VIRTUAL_NODE_IDX=[11 20 29 37 46 55];
+KERR_NARMA_NPC=26;KERR_NARMA_TAP_DELAYS=[0 1 2 3 4 5 6 7 8 9 10 12 15];
+KERR_NARMA_LAMBDA_GRID=1e-4;KERR_NARMA_BASE_FEATURE_MODE='linear_features';
+KERR_NARMA_SKIP_PHYSICAL_ABLATIONS=true;KERR_NARMA_SKIP_BASELINES=true;
+KERR_NARMA_DISABLE_PLOTS=true;KERR_NARMA_SAVE_COMPACT_FEATURES=true;
+KERR_NARMA_OUTPUT_TAG=sprintf('DeterminismReplicate%d_20260810',replicate);
+run(fullfile(fileparts(mfilename('fullpath')),'Fig3_KerrReservoir_NARMA10_Reproducible.m'));
+fprintf('DETERMINISM_TASK_PASS output=%s\n',cfg.outputPrefix);
+

@@ -1,0 +1,2 @@
+N,kappa,J0,dt,nSteps,cutoff,theoreticalUpperBound,estimatedConditionalExponent,sameRelativeError,oldRelativeError
+12,0.12,0.65,0.0125,1600,600,-0.06,-0.0600000000000001,3.44595174593016e-15,3.24157728037362e-14

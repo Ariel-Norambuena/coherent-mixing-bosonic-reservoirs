@@ -1,0 +1,20 @@
+{
+  "status": "stage_2_complete",
+  "test_metrics_evaluated": false,
+  "selection_seed_count": 10,
+  "tie_tolerance": 0.005,
+  "leave_one_out_winner_fraction": 1,
+  "selected": {
+    "K": 0,
+    "J": 0.65,
+    "input_gain_scale": 1.25,
+    "steps_per_sample": 55,
+    "virtual_samples": 6,
+    "n_delay_blocks": 13,
+    "n_pc": 26,
+    "readout_coefficients_including_bias": 339,
+    "ridge_lambda": 1,
+    "mean_validation_nrmse": 0.284242701475724,
+    "sd_validation_nrmse": 0.016744046048692295
+  }
+}

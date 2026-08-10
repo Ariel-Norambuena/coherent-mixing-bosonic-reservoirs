@@ -1,0 +1,25 @@
+{
+  "status": "stage_1_complete",
+  "protocol_config_sha256": "7bd8e7f4719457accf4197dbe73cb3095bb4f7be8935dbc1a0eed737c64e3175",
+  "selection_seed_count": 10,
+  "test_metrics_evaluated": false,
+  "selected": {
+    "K": 0,
+    "J": 0.65,
+    "mean_validation_nrmse": 0.28763254730106425,
+    "sd_validation_nrmse": 0.018384987046058971
+  },
+  "tie_tolerance": 0.005,
+  "stage_2_candidates": [
+    {
+      "K": 0,
+      "J": 0.65,
+      "mean_validation_nrmse": 0.28763254730106425
+    },
+    {
+      "K": -0.02,
+      "J": 0.65,
+      "mean_validation_nrmse": 0.290934542150593
+    }
+  ]
+}

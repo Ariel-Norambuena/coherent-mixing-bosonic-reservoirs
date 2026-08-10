@@ -1,0 +1,69 @@
+{
+  "schema_version": 1,
+  "status": "locked_test_complete",
+  "analysis_date": "2026-08-10",
+  "locked_config_sha256": "68eec107bb9bf7092b5954991020244521346c85a256d44deb4890394b25f41d",
+  "comparison_config_sha256": "aee5d4687004f806762a648cd8c90f583d70bf4c327d68856613ad051a6672ba",
+  "no_retuning": true,
+  "requested_coefficient_budget": 351,
+  "bootstrap_resamples": 10000,
+  "permutation_resamples": 100000,
+  "primary_feature_mode": "linear_features",
+  "secondary_feature_mode": "number_features",
+  "statistics": [
+    {
+      "feature_mode": "linear_features",
+      "n_pairs": 30,
+      "control_mean": 0.31175714325668252,
+      "control_sd": 0.014511998726261082,
+      "control_median": 0.31122145476109453,
+      "control_iqr": 0.019927807873821979,
+      "intervention_mean": 0.27871852297953148,
+      "intervention_sd": 0.018098875287905242,
+      "intervention_median": 0.27820702474960951,
+      "intervention_iqr": 0.01954040358026099,
+      "paired_difference_mean": 0.033038620277151133,
+      "paired_difference_mean_ci95": [
+        0.029687594832401992,
+        0.036143480727142407
+      ],
+      "paired_difference_median": 0.035486696679918481,
+      "paired_difference_median_ci95": [
+        0.031804466600836023,
+        0.036838222798256021
+      ],
+      "cohen_dz": 3.606341542963091,
+      "improvement_fraction": 1,
+      "permutation_p_two_sided": 9.99990000099999E-6,
+      "sign_test_p_two_sided": 1.862645149230957E-9,
+      "minimum_improvement_fraction_met": true
+    },
+    {
+      "feature_mode": "number_features",
+      "n_pairs": 30,
+      "control_mean": 0.31449435282398913,
+      "control_sd": 0.012862050745756545,
+      "control_median": 0.31317753253638853,
+      "control_iqr": 0.015174079840445998,
+      "intervention_mean": 0.32479968908975571,
+      "intervention_sd": 0.017197777436520168,
+      "intervention_median": 0.32348248692510151,
+      "intervention_iqr": 0.021766944889151985,
+      "paired_difference_mean": -0.01030533626576653,
+      "paired_difference_mean_ci95": [
+        -0.014902955347498095,
+        -0.0058862264232327124
+      ],
+      "paired_difference_median": -0.0080093996681334934,
+      "paired_difference_median_ci95": [
+        -0.015384811045611013,
+        -0.0029151477549499982
+      ],
+      "cohen_dz": -0.804785784941194,
+      "improvement_fraction": 0.23333333333333334,
+      "permutation_p_two_sided": 0.00010999890001099989,
+      "sign_test_p_two_sided": 0.0052228793501853943,
+      "minimum_improvement_fraction_met": false
+    }
+  ]
+}

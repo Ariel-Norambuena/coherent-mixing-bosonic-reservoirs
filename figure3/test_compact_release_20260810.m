@@ -1,0 +1,43 @@
+function test_compact_release_20260810
+%TEST_COMPACT_RELEASE Validate all archived submission-facing tables.
+scriptDir=fileparts(mfilename('fullpath'));
+
+locked=readtable(fullfile(scriptDir,'NARMALockedPairs_Raw_20260810.csv'), ...
+    'TextType','string');
+lockedStats=readtable(fullfile(scriptDir, ...
+    'NARMALockedPairs_Statistics_20260810.csv'),'TextType','string');
+baseline=readtable(fullfile(scriptDir,'NARMABaselineLocked_Raw_20260810.csv'), ...
+    'TextType','string');
+physical=readtable(fullfile(scriptDir, ...
+    'NARMAFairComparison_PhysicalRaw_20260810.csv'),'TextType','string', ...
+    'Delimiter',',');
+mechanism=readtable(fullfile(scriptDir, ...
+    'NARMAMechanismAblation_Raw_20260810.csv'),'TextType','string');
+capacity=readtable(fullfile(scriptDir, ...
+    'NARMAProcessingCapacity_Raw_20260810.csv'),'TextType','string');
+robustness=readtable(fullfile(scriptDir, ...
+    'NARMAMeasurementRobustness_Raw_20260810.csv'),'TextType','string');
+robustnessSummary=readtable(fullfile(scriptDir, ...
+    'NARMAMeasurementRobustness_Summary_20260810.csv'),'TextType','string');
+
+assert(height(locked)==120 && numel(unique(locked.lockedIndex))==30);
+assert(all(isfinite(locked.testNRMSE)) && height(lockedStats)==2);
+q=lockedStats(lockedStats.feature_mode=="linear_features",:);
+i=lockedStats(lockedStats.feature_mode=="number_features",:);
+assert(height(q)==1 && abs(q.improvement_fraction-1)<eps);
+assert(height(i)==1 && abs(i.improvement_fraction-7/30)<1e-12);
+assert(height(baseline)==840 && all(isfinite(baseline.testNRMSE)));
+assert(height(physical)==840 && all(isfinite(physical.testNRMSE)));
+assert(height(mechanism)==90 && all(isfinite(mechanism.validationNRMSE)));
+assert(height(capacity)==3000 && all(isfinite(capacity.capacity)));
+assert(height(robustness)==2900 && all(isfinite(robustness.validationNRMSE)));
+assert(height(robustnessSummary)==98 && ...
+    all(isfinite(robustnessSummary.medianNRMSE)));
+
+outputs={'Figure1_ArchitectureMechanism_20260810.pdf', ...
+    'Figure2_SelectionCapacity_20260810.pdf','NARMALockedPairs_20260810.pdf', ...
+    'NARMAMechanismAblation_20260810.pdf','NARMAFairComparison_20260810.pdf', ...
+    'NARMAMeasurementRobustness_20260810.pdf'};
+assert(all(cellfun(@(f)isfile(fullfile(scriptDir,f)),outputs)));
+fprintf('COMPACT_RELEASE_TEST_PASS tables=8 figures=%d\n',numel(outputs));
+end

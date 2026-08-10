@@ -1,123 +1,86 @@
 # Coherent mixing in bosonic reservoirs
 
-MATLAB source code for the figures and numerical analyses accompanying
-"Coherent mixing and nonlinear temporal processing in driven-dissipative
-bosonic reservoirs."
+MATLAB code, frozen configurations, compact seed-level tables, and final
+figure generators for:
 
-This is a code-only repository. Generated figures, numerical tables, MAT
-caches, and manuscript files are intentionally excluded. Running the scripts
-creates those artifacts locally.
+> **Coherent mixing and observable-dependent temporal processing in
+> driven-dissipative bosonic reservoirs**
 
-## Requirements
+The central result concerns a Kerr-free, driven, lossy bosonic network with
+input-dependent detuning. The state equation is affine-bilinear, equal-input
+trajectories contract at the loss-controlled rate, and coherent hopping changes
+which temporal histories are exposed by a specified observable. In 30 frozen
+paired NARMA10 tests, hopping improves quadrature readout in every realization
+but degrades compact intensity readout on average. The repository therefore
+supports an observable- and task-dependent claim, not a universal or quantum
+advantage.
 
-- MATLAB R2025b (tested)
-- Parallel Computing Toolbox is optional and used only when the environment
-  variable `KERR_FIG2_PARALLEL=1` is set for the synchronization map
-- Sufficient disk space for the full NARMA10 and Mackey-Glass caches
+## Quick reproduction
 
-Run all commands from the repository root.
+Requirements: MATLAB R2025b. The compact path uses the Statistics and Machine
+Learning Toolbox for table/statistical utilities; Parallel Computing Toolbox is
+needed only by the long multi-process launchers.
 
-## Fast verification
-
-The NARMA10 smoke test exercises simulation, feature construction, train-only
-preprocessing, validation-selected ridge regression, and file export:
-
-```powershell
-matlab -batch "KERR_NARMA_SMOKE=true; KERR_NARMA_OUTPUT_TAG='Smoke'; KERR_NARMA_SKIP_PHYSICAL_ABLATIONS=true; run('figure3/Fig3_KerrReservoir_NARMA10_Reproducible.m')"
-```
-
-Smoke and quick modes verify the pipeline only; their numerical values are not
-paper results.
-
-## Figures 1 and 2
+From the repository root:
 
 ```powershell
-matlab -batch "run('figure1/Fig1_KerrResponse_Bistability.m')"
-matlab -batch "run('figure2/Fig2_Kerr4_TwoTone_SyncMap.m')"
+matlab -batch "run_all('analysis')"
+matlab -batch "run_all('verify')"
 ```
 
-Figure 2 computes its synchronization map when no local MAT cache is present.
-The full grid is substantially slower than Figure 1.
+`analysis` regenerates all six vector figure components used by the five main
+figures. `verify` additionally checks compact table dimensions, finite values,
+the frozen locked endpoints, and output presence. Neither command needs the
+large temporary state caches.
 
-## NARMA10 pipeline
+## Frozen protocol
 
-The main simulator contains the physical model, deterministic seed schedules,
-feature blocks, PCA, tapped readouts, ridge selection, and smoke/quick modes.
+- Physical config: `figure3/configs/narma_locked_config_20260810.json`
+- SHA-256: `68eec107bb9bf7092b5954991020244521346c85a256d44deb4890394b25f41d`
+- Comparison config: `figure3/configs/narma_locked_comparison_config_20260810.json`
+- SHA-256: `aee5d4687004f806762a648cd8c90f583d70bf4c327d68856613ad051a6672ba`
+- Selection offsets: 101--110
+- Locked offsets: 1001--1030
+- Primary readout: 26 PCs, 13 causal delay blocks, 339 coefficients including bias
+
+No physical, feature, or ridge choice is selected from the locked test bank.
+
+## Repository contents
+
+- `figure1/`, `figure2/`: Kerr-response and synchronization generators used in
+  the Supplemental Material.
+- `figure3/`: simulator, selection and locked launchers, classical baselines,
+  ablations, capacities, perturbations, tests, compact tables, and final plots.
+- `run_all.m`: compact reproduction, compact verification, and archival audit
+  entry point.
+- `RESULTS_MANIFEST.md`: script/table/figure lineage with SHA-256 hashes.
+- `REPRODUCIBILITY.md`: compact and full execution commands.
+- `ENVIRONMENT.md`: tested software environment.
+- `CHANGELOG_SCIENTIFIC.md`: disposition of the simulated referee report.
+
+## Full archival audit
+
+After independently regenerating the trajectory summaries, run:
 
 ```powershell
-matlab -batch "run('figure3/Fig3_KerrReservoir_NARMA10_Reproducible.m')"
-matlab -batch "run('figure3/run_full_K_sweep_20260706.m')"
-matlab -batch "run('figure3/run_full_J_sweep_20260720.m')"
-matlab -batch "run('figure3/run_full_J_high_extension_20260720.m')"
+matlab -batch "run_all('full_audit')"
 ```
 
-After the coupling sweep, run four independently reseeded confirmations:
+This recomputes MAT-dependent statistics and executes the no-leakage,
+NARMA-alignment/split/metric, and cached/direct-equivalence tests. The expensive
+locked, baseline, mechanism, and robustness launchers are documented in
+`REPRODUCIBILITY.md` and collision guarded.
 
-```powershell
-matlab -batch "KERR_NARMA_SEED_OFFSET=1; run('figure3/run_targeted_J_seed_20260720.m')"
-```
+## Data scope
 
-Repeat with offsets 2, 3, and 4, then consolidate the final coupling figure:
+Compact CSV tables contain every numerical value used in the article and all
+seed-level endpoints needed for the published plots. Large complex-state caches
+are excluded because the tracked launchers regenerate them deterministically.
+The robustness claim is calibration conditioned; the repository does not claim
+uncalibrated fabrication tolerance.
 
-```powershell
-matlab -batch "run('figure3/analyze_J_sweep_multiseed_20260720.m')"
-```
+## Citation and license
 
-The selection-realization feature ablations and their consolidation are:
-
-```powershell
-matlab -batch "run('figure3/run_full_feature_ablation_J00_20260722.m')"
-matlab -batch "run('figure3/run_full_feature_ablation_J08_20260722.m')"
-matlab -batch "run('figure3/analyze_feature_ablation_Jpair_20260722.m')"
-```
-
-For the compact quadrature and intensity confirmations, run the following for
-offsets 1 through 4 and then consolidate:
-
-```powershell
-matlab -batch "KERR_NARMA_SEED_OFFSET=1; run('figure3/run_targeted_compact_features_seed_20260806.m')"
-matlab -batch "run('figure3/analyze_compact_features_multiseed_20260806.m')"
-```
-
-The matched 350-state echo-state network and comparison figure are generated
-with:
-
-```powershell
-matlab -batch "run('figure3/Fig3_ESN_Baseline_NARMA10_20260806.m')"
-matlab -batch "run('figure3/analyze_ESN_baseline_20260806.m')"
-```
-
-Once the main and K-sweep summary MAT files exist, the final diagnostic panels
-can be rebuilt without rerunning the physical simulations:
-
-```powershell
-matlab -batch "run('figure3/plot_final_narma_from_cache_20260807.m')"
-```
-
-## Mackey-Glass and robustness
-
-Create the paired horizon-48 raw-feature caches:
-
-```powershell
-matlab -batch "KERR_MG_HORIZON=48; KERR_MG_CACHE_ONLY=true; KERR_MG_J=0; KERR_MG_LAUNCHER_TAG='MGH48RawJ0_20260806'; run('figure3/run_mackey_glass_horizon12_20260806.m')"
-matlab -batch "KERR_MG_HORIZON=48; KERR_MG_CACHE_ONLY=true; KERR_MG_J=0.8; KERR_MG_LAUNCHER_TAG='MGH48RawJ08_20260806'; run('figure3/run_mackey_glass_horizon12_20260806.m')"
-```
-
-Then generate the capacity-controlled benchmark and hardware-oriented
-robustness figure:
-
-```powershell
-matlab -batch "run('figure3/analyze_mackey_glass_capacity_20260806.m')"
-matlab -batch "run('figure3/analyze_hardware_robustness_20260806.m')"
-```
-
-## Reproducibility conventions
-
-Physical parameters are fixed within each comparison. Dataset, mask, and
-disorder seeds are paired across the physical cases being compared. PCA and
-standardization are fitted on training data only, ridge penalties are selected
-on validation data, and the test split is evaluated after selection. Analysis
-scripts assert that required artifacts exist and reject non-finite values.
-
-The code writes all generated artifacts next to the script that creates them.
-The `.gitignore` keeps those outputs out of version control.
+Use `CITATION.cff` to cite this software and the associated article. Code is
+released under the MIT License. Numerical tables and figures may be reused with
+attribution to the associated article and repository.
