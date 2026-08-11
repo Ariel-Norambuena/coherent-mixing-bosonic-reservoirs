@@ -7,7 +7,7 @@ final LaTeX compilation on 2026-08-11. Paths are relative to the project root.
 
 | Artifact | Purpose | SHA-256 |
 |---|---|---|
-| `run_all.m` | compact reproduction and verification entry point | `c144b241a0ead3f38f98ca4c9d5a5b101c82e5dc878a156169ca9eba7185a6e7` |
+| `run_all.m` | compact reproduction and verification entry point | `2bfe4d7d66f74850838ae586907d7aa7f72b99bc444c330ab4bd33f0d52c583e` |
 | `figure3/configs/narma_revision_protocol_20260807.json` | disjoint development, selection, and locked banks | `7bd8e7f4719457accf4197dbe73cb3095bb4f7be8935dbc1a0eed737c64e3175` |
 | `figure3/configs/narma_locked_config_20260810.json` | frozen physical architecture and primary endpoint | `68eec107bb9bf7092b5954991020244521346c85a256d44deb4890394b25f41d` |
 | `figure3/configs/narma_locked_comparison_config_20260810.json` | physical and classical budget curves | `aee5d4687004f806762a648cd8c90f583d70bf4c327d68856613ad051a6672ba` |
