@@ -1,4 +1,4 @@
-%% Signal complexity for NARMA10 and coherent phase-channel equalization.
+%% Signal complexity for NARMA10 and a synthetic coherent phase stream.
 
 clear;close all;clc;scriptDir=fileparts(mfilename('fullpath'));
 rng(20260811,'twister');nSamples=7000;

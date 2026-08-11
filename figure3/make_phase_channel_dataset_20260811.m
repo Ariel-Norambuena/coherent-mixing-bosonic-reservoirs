@@ -1,6 +1,6 @@
 function [uRaw,uEncoded,target,received,meta] = ...
     make_phase_channel_dataset_20260811(numSamples,seedOffset)
-%MAKE_PHASE_CHANNEL_DATASET_20260811 Coherent BPSK equalization benchmark.
+%MAKE_PHASE_CHANNEL_DATASET_20260811 Synthetic coherent BPSK phase stream.
 
 arguments
     numSamples (1,1) double {mustBeInteger,mustBePositive}
@@ -31,4 +31,3 @@ meta.snr_db = snrDb;
 meta.decision_delay = decisionDelay;
 meta.symbols = symbols;
 end
-

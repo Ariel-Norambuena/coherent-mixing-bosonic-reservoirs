@@ -27,7 +27,7 @@ analysisScripts = {
     'plot_narma_mechanism_from_tables_20260810.m'
     'plot_narma_fair_comparison_from_tables_20260810.m'
     'plot_narma_robustness_from_tables_20260810.m'
-    'plot_photon_precision_from_table_20260811.m'
+    'plot_dynamic_photon_kerr_thermal_20260812.m'
     'generate_figure_minimal_phase_20260811.m'
     };
 
@@ -84,6 +84,9 @@ requiredOutputs = {
     'Figure3_TaskSignalComplexityExtended_20260811.pdf'
     'Figure6_MinimalArchitectureTasks_20260811.pdf'
     'FigS_PhotonPrecision_20260811.pdf'
+    'DynamicPhotonKerrThermalAudit_20260812.csv'
+    'EqualFrequencyControl_Summary_20260812.csv'
+    'PhaseChannelFullIQ_Summary_20260812.csv'
     };
 missing = requiredOutputs(~cellfun(@isfile, requiredOutputs));
 assert(isempty(missing), 'Missing expected output(s): %s', strjoin(missing, ', '));

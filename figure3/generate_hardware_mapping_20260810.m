@@ -25,6 +25,15 @@ virtualTimes = virtualIndices*substepTime;
 minimumVirtualSpacing = min(diff(virtualTimes));
 averageVirtualRate = numel(virtualIndices)/symbolTime;
 peakVirtualRate = 1/minimumVirtualSpacing;
+nPC = locked.n_pc;
+nDelayBlocks = numel(locked.tap_delays);
+rawQuadraturesOriginal = scale.nModes*scale.nCopies*2*numel(virtualIndices);
+rawQuadraturesMinimal = scale.nModes*2*numel(virtualIndices);
+trainedReadoutWeights = locked.readout_coefficients_including_bias-1;
+explicitPcaMacsOriginal = rawQuadraturesOriginal*nPC;
+explicitPcaMacsMinimal = rawQuadraturesMinimal*nPC;
+fusedLinearMacsOriginal = rawQuadraturesOriginal*nDelayBlocks;
+fusedLinearMacsMinimal = rawQuadraturesMinimal*nDelayBlocks;
 
 hbar = 1.054571817e-34;
 c = 299792458;
@@ -71,7 +80,9 @@ quantity = [
     "Balanced photodiodes for I/Q"
     "High-speed local detuning controls"
     "Shared amplitude modulators"
-    "Digital multiplications per symbol"
+    "Trained readout weights excluding bias"
+    "Explicit PCA MACs per symbol"
+    "Fused linear MACs per symbol"
     ];
 symbol = [
     "Omega_0/(2 pi)"
@@ -95,7 +106,9 @@ symbol = [
     "N_balancedPD"
     "N_Delta"
     "N_AM"
-    "N_MAC"
+    "N_w"
+    "N_PCA"
+    "N_fused"
     ];
 normalizedValue = [
     1
@@ -119,7 +132,9 @@ normalizedValue = [
     NaN
     NaN
     NaN
-    locked.readout_coefficients_including_bias-1
+    trainedReadoutWeights
+    explicitPcaMacsOriginal
+    fusedLinearMacsOriginal
     ];
 physicalValue = [
     scale.frequencyUnitHz
@@ -143,13 +158,16 @@ physicalValue = [
     4*scale.nModes*scale.nCopies
     scale.nModes*scale.nCopies
     scale.nCopies
-    locked.readout_coefficients_including_bias-1
+    trainedReadoutWeights
+    explicitPcaMacsOriginal
+    fusedLinearMacsOriginal
     ];
 unit = [
     "Hz";"Hz";"Hz";"Hz";"Hz";"Hz";"Hz";"s";"s";"samples/s";"samples/s"; ...
     "W";"W";"photons";"photons";"channels";"real channels"; ...
     "optical hybrids";"photodiodes"; ...
-    "RF-weighted electrodes";"modulators";"multiply-accumulates"
+    "RF-weighted electrodes";"modulators";"coefficients"; ...
+    "multiply-accumulates";"multiply-accumulates"
     ];
 implementation = [
     "Scale fixed by the illustrative loaded linewidth"
@@ -174,6 +192,8 @@ implementation = [
     "Worst-case independent-gain implementation; RF fan-out may reduce sources"
     "One shared drive modulator per copy"
     "Primary locked linear readout, excluding bias"
+    "Dense projection of 432 raw quadratures onto 26 PCs"
+    "PCA and linear readout algebraically fused over 13 delay blocks"
     ];
 
 tolerance = [
@@ -185,22 +205,28 @@ tolerance = [
     "Illustrative only";"Illustrative only";"Illustrative only"; ...
     "Measured across locked runs";"Architecture count";"Architecture count"; ...
     "Architecture count";"Architecture count";"Architecture count"; ...
-    "Architecture count";"Exact digital count"];
+    "Architecture count";"Exact coefficient count"; ...
+    "Explicit dense-transform count";"Fused dense-transform count"];
 T = table(quantity,symbol,normalizedValue,physicalValue,unit,tolerance,implementation);
 writetable(T,fullfile(scriptDir,'HardwareMapping_HybridSiNTFLN_20260810.csv'));
 
-resources = table(scale.nModes,scale.nCopies,scale.nModes*scale.nCopies, ...
-    scale.nModes*scale.nCopies,2*scale.nModes*scale.nCopies, ...
-    scale.nModes*scale.nCopies,4*scale.nModes*scale.nCopies, ...
-    scale.nModes*scale.nCopies,scale.nCopies,numel(virtualIndices), ...
-    averageVirtualRate,peakVirtualRate, ...
-    locked.readout_coefficients_including_bias-1, ...
-    'VariableNames',{'modesPerCopy','copies','totalResonators', ...
+architecture = ["original";"minimal"];
+copies = [scale.nCopies;1];
+totalResonators = scale.nModes*copies;
+resources = table(architecture,repmat(scale.nModes,2,1),copies,totalResonators, ...
+    totalResonators,2*totalResonators,totalResonators,4*totalResonators, ...
+    [totalResonators(1);0],[scale.nCopies;1],repmat(numel(virtualIndices),2,1), ...
+    repmat(averageVirtualRate,2,1),repmat(peakVirtualRate,2,1), ...
+    repmat(trainedReadoutWeights,2,1), ...
+    [explicitPcaMacsOriginal;explicitPcaMacsMinimal], ...
+    [fusedLinearMacsOriginal;fusedLinearMacsMinimal], ...
+    'VariableNames',{'architecture','modesPerCopy','copies','totalResonators', ...
     'intensityChannels','quadratureValues','opticalIQHybrids','balancedPhotodiodes', ...
     'localDetuningControls', ...
     'sharedAmplitudeModulators','virtualSamplesPerSymbol', ...
     'averageSampleRatePerChannel','peakSampleRatePerChannel', ...
-    'digitalMultiplicationsPerSymbol'});
+    'trainedReadoutWeightsExcludingBias','explicitPcaMacsPerSymbol', ...
+    'fusedLinearMacsPerSymbol'});
 writetable(resources,fullfile(scriptDir,'HardwareResourceBudget_20260810.csv'));
 
 reportFile = fullfile(scriptDir,'HardwareMappingAudit_20260810.md');
@@ -233,5 +259,11 @@ fprintf(fid,['- The locked coupling gain is observed with simultaneous quadratur
     'features. A direct implementation therefore needs 36 optical I/Q hybrids, ' ...
     '144 photodiodes, and 72 differential ADC channels. Intensity-only readout ' ...
     'uses 36 detectors but does not inherit the locked coupling gain.\n']);
+fprintf(fid,['- The trained readout has %d weights excluding bias. Explicit PCA ' ...
+    'costs %d/%d MACs per symbol for the original/minimal architectures; ' ...
+    'algebraic fusion with the linear readout reduces these counts to %d/%d. ' ...
+    'These counts exclude standardization, buffering, acquisition, and energy.\n'], ...
+    trainedReadoutWeights,explicitPcaMacsOriginal,explicitPcaMacsMinimal, ...
+    fusedLinearMacsOriginal,fusedLinearMacsMinimal);
 fprintf('HARDWARE_MAPPING_PASS symbol_ns=%.4g mask_GHz=%.4g\n', ...
     1e9*symbolTime,1e-9/substepTime);

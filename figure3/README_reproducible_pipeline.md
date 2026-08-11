@@ -550,3 +550,49 @@ matlab -batch "run('Figure 3/generate_signal_complexity_extended_20260811.m')"
 matlab -batch "run('Figure 3/generate_figure_minimal_phase_20260811.m')"
 matlab -batch "run('Figure 3/plot_photon_precision_from_table_20260811.m')"
 ```
+
+## Comparative-referee physical audits (2026-08-11)
+
+The post-review checks replace the occupation-based photon conversion, test the
+role of deterministic spectral diversity, and benchmark the phase stream
+against full complex digital inputs. Large trajectory MAT files remain in the
+archival workspace and are not required to inspect the compact conclusions.
+
+Run the centered-feature trajectories and physical audit with:
+
+```powershell
+powershell -File "Figure 3/run_dynamic_feature_audit_parallel_20260812.ps1"
+matlab -batch "run('Figure 3/analyze_dynamic_photon_kerr_thermal_20260812.m')"
+matlab -batch "run('Figure 3/plot_dynamic_photon_kerr_thermal_20260812.m')"
+```
+
+At the `0.224 nW/ring` normalization reference, the median retained PCA
+component has `N_eff=1.61165e-7` for `J=0` and `5.93421e-8` for `J=0.65`.
+Formal common scaling to `N_eff=1e4` gives `13.8988` and `37.7472 W/ring`.
+Those powers are not operating-point proposals: a representative
+stoichiometric-SiN estimate gives `K/(2 pi)=0.437 Hz/photon` and residual-Kerr
+ratios of order `1e4` and `1e3`. The manuscript therefore makes no low-power or
+physically self-consistent drive-scaling claim.
+
+Run the equal-frequency control with:
+
+```powershell
+powershell -File "Figure 3/run_equal_frequency_control_parallel_20260812.ps1"
+matlab -batch "run('Figure 3/analyze_equal_frequency_control_20260812.m')"
+```
+
+On ten validation offsets, the deterministic nondegenerate spectrum gives mean
+NRMSE `0.325567/0.274068` at `J=0/0.65`; setting all bare detunings equal gives
+`0.368283/0.415146`. Random disorder is unnecessary, but deterministic static
+spectral diversity is part of the minimal design.
+
+The full-I/Q digital audit reuses the already locked phase-channel sequences:
+
+```powershell
+matlab -batch "run('Figure 3/analyze_phase_channel_full_iq_20260812.m')"
+```
+
+Mean locked NRMSE is `0.089053` for full-I/Q linear and `0.092861` for full-I/Q
+NVAR2, and both beat every phase-only method in all 30 realizations. The second
+benchmark is consequently framed as a synthetic phase-stream stress test, not
+as competitive coherent-field equalization.

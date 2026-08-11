@@ -121,6 +121,11 @@ else
 end
 overrideDisableStaticDisorder = exist('KERR_NARMA_DISABLE_STATIC_DISORDER','var') && ...
     KERR_NARMA_DISABLE_STATIC_DISORDER;
+if exist('KERR_NARMA_STATIC_DETUNING','var')
+    overrideStaticDetuning = KERR_NARMA_STATIC_DETUNING;
+else
+    overrideStaticDetuning = [];
+end
 if exist('KERR_NARMA_COPY_DISORDER_SCALE','var')
     overrideCopyDisorderScale = KERR_NARMA_COPY_DISORDER_SCALE;
 else
@@ -208,7 +213,7 @@ else
 end
 overrideLockedPair = exist('KERR_NARMA_LOCKED_PAIR','var') && ...
     KERR_NARMA_LOCKED_PAIR;
-clearvars -except overrideQuick overrideSmoke overrideKSweep overrideJSweep overrideFeatureAblations overrideSkipPhysical overrideSkipBaselines overrideDisablePlots overrideOutputTag overrideKList overrideJList overrideJSweepKList overrideSeedOffset overrideBaseK overrideBaseJ overrideFeatureCases overrideFeatureModes overrideBaseFeatureMode overrideCustomInputRaw overrideCustomInputEncoded overrideCustomTarget overrideTaskLabel overrideValidateFeatureCache overrideSaveRawFeatures overrideSaveCompactFeatures overrideInputMode overrideGDeltaMode overrideGFMode overrideDisableStaticDisorder overrideCopyDisorderScale overrideCopyDetuningDisorder overrideNumReservoirs overrideProtocolMode overrideNPC overrideTapDelays overrideStepsPerSample overrideDt overrideInputMask overrideInputBias overrideNumVirtual overrideInputGainScale overrideVirtualNodeIdx overrideReadoutVariants overrideFeatureBudgetVariants overrideFeatureBudgetLambdaMap overrideLambdaGrid overrideLockedPair;
+clearvars -except overrideQuick overrideSmoke overrideKSweep overrideJSweep overrideFeatureAblations overrideSkipPhysical overrideSkipBaselines overrideDisablePlots overrideOutputTag overrideKList overrideJList overrideJSweepKList overrideSeedOffset overrideBaseK overrideBaseJ overrideFeatureCases overrideFeatureModes overrideBaseFeatureMode overrideCustomInputRaw overrideCustomInputEncoded overrideCustomTarget overrideTaskLabel overrideValidateFeatureCache overrideSaveRawFeatures overrideSaveCompactFeatures overrideInputMode overrideGDeltaMode overrideGFMode overrideDisableStaticDisorder overrideStaticDetuning overrideCopyDisorderScale overrideCopyDetuningDisorder overrideNumReservoirs overrideProtocolMode overrideNPC overrideTapDelays overrideStepsPerSample overrideDt overrideInputMask overrideInputBias overrideNumVirtual overrideInputGainScale overrideVirtualNodeIdx overrideReadoutVariants overrideFeatureBudgetVariants overrideFeatureBudgetLambdaMap overrideLambdaGrid overrideLockedPair;
 close all; clc;
 
 %% ========================== User configuration ============================
@@ -600,6 +605,12 @@ P.gF = cfg.inputGainScale*P.gF;
 if overrideDisableStaticDisorder
     P.Delta0 = linspace(-1.05,1.05,P.N).';
 end
+if ~isempty(overrideStaticDetuning)
+    overrideStaticDetuning = overrideStaticDetuning(:);
+    assert(numel(overrideStaticDetuning)==P.N && all(isfinite(overrideStaticDetuning)), ...
+        'KERR_NARMA_STATIC_DETUNING must contain one finite value per mode.');
+    P.Delta0 = overrideStaticDetuning;
+end
 P.gDelta = applyEncodingPattern(P.gDelta, overrideGDeltaMode, 'gDelta');
 P.gF = applyEncodingPattern(P.gF, overrideGFMode, 'gF');
 if ~isempty(overrideInputMode)
@@ -613,6 +624,7 @@ end
 cfg.encodingGDeltaMode = lower(strtrim(overrideGDeltaMode));
 cfg.encodingGFMode = lower(strtrim(overrideGFMode));
 cfg.staticDisorderEnabled = ~overrideDisableStaticDisorder;
+cfg.staticDetuningExplicitlyOverridden = ~isempty(overrideStaticDetuning);
 cfg.inputMode = P.inputMode;
 
 %% ======================== Input mask construction =========================

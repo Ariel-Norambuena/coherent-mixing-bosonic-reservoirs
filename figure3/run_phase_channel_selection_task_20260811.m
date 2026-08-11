@@ -1,4 +1,4 @@
-%% Validation-only ridge selection for coherent phase-channel equalization.
+%% Validation-only ridge selection for synthetic phase-stream processing.
 
 assert(exist('PHASE_SELECTION_TASK_INDEX','var')==1,'Set PHASE_SELECTION_TASK_INDEX.');
 scriptDir=fileparts(mfilename('fullpath'));
@@ -20,7 +20,7 @@ KERR_NARMA_BASE_FEATURE_MODE='linear_features';KERR_NARMA_GDELTA_MODE='uniform';
 KERR_NARMA_INPUT_MODE='detuning+amplitude';KERR_NARMA_DISABLE_STATIC_DISORDER=true;KERR_NARMA_COPY_DISORDER_SCALE=0;
 KERR_NARMA_NUM_RESERVOIRS=locked.num_reservoirs;KERR_NARMA_INPUT_MASK=locked.input_mask(:);KERR_NARMA_INPUT_BIAS=locked.input_bias(:);
 KERR_NARMA_CUSTOM_INPUT_RAW=uRaw;KERR_NARMA_CUSTOM_INPUT_ENCODED=uEncoded;KERR_NARMA_CUSTOM_TARGET=target;
-KERR_NARMA_TASK_LABEL='coherent phase-channel equalization';KERR_NARMA_SKIP_PHYSICAL_ABLATIONS=true;
+KERR_NARMA_TASK_LABEL='synthetic coherent phase-stream processing';KERR_NARMA_SKIP_PHYSICAL_ABLATIONS=true;
 KERR_NARMA_SKIP_BASELINES=true;KERR_NARMA_DISABLE_PLOTS=true;
 run(fullfile(scriptDir,'Fig3_KerrReservoir_NARMA10_Reproducible.m'));
 
@@ -29,4 +29,3 @@ locked=jsondecode(fileread(fullfile(scriptDir,'configs','minimal_architecture_lo
 seedIndex=find(protocol.phase_selection_offsets==cfg.seedOffset);conditionIndex=find(abs([locked.J_control locked.J_intervention]-P.J0)<1e-14);
 taskIndex=(seedIndex-1)*2+conditionIndex;assert(~cfg.evaluateTest&&isnan(results.main.NRMSE));
 fprintf('PHASE_SELECTION_PASS task=%d J=%.3f val=%.6f\n',taskIndex,P.J0,results.main.valNRMSE);
-

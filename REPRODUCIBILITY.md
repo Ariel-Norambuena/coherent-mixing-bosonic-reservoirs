@@ -64,6 +64,8 @@ powershell -File "Figure 3/run_minimal_architecture_copy_parallel_20260811.ps1"
 powershell -File "Figure 3/run_minimal_architecture_locked_parallel_20260811.ps1"
 powershell -File "Figure 3/run_phase_channel_selection_parallel_20260811.ps1"
 powershell -File "Figure 3/run_phase_channel_locked_parallel_20260811.ps1"
+powershell -File "Figure 3/run_equal_frequency_control_parallel_20260812.ps1"
+powershell -File "Figure 3/run_dynamic_feature_audit_parallel_20260812.ps1"
 ```
 
 These launchers are computationally expensive and collision guarded. Existing
@@ -81,6 +83,13 @@ The minimal architecture uses fresh NARMA10 offsets 3001--3030. The coherent
 phase-channel task uses validation offsets 201--210 and locked offsets
 4001--4030. Their frozen configuration hashes are listed in `README.md` and
 `RESULTS_MANIFEST.md`.
+
+The public compact release includes the post-review equal-frequency,
+full-I/Q, and centered-feature photon/Kerr/thermal tables. `run_all('analysis')`
+regenerates the revised receiver and task figures from these tables. The two
+new launchers above regenerate the MAT-dependent controls in the archival
+workspace; `analyze_phase_channel_full_iq_20260812.m` independently regenerates
+the digital full-I/Q table without rerunning the reservoir.
 
 See `RESULTS_MANIFEST.md` for the script, configuration, input, output, and
 SHA-256 lineage of every submission-facing artifact.

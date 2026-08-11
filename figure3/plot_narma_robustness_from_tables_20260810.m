@@ -34,12 +34,11 @@ for p=1:numel(show)
     end
     set(ax,'YScale','log'); xlabel(ax,xLabels(p));
     ylabel(ax,'Validation NRMSE');
-    title(ax,sprintf('(%c) %s','c'+p-1,panelTitles(p)),'FontWeight','normal');
+    title(ax,sprintf('(%c) %s','a'+p-1,panelTitles(p)),'FontWeight','normal');
     grid(ax,'on'); box(ax,'on');
     if p==1
-        legend(ax,{'J=0, zero-shot','J=0, recalibrated', ...
-            'J=0.65, zero-shot','J=0.65, recalibrated'}, ...
-            'Location','southwest','Box','off','FontSize',7.5);
+        legend(ax,{'J=0, fixed','J=0, recal.','J=0.65, fixed','J=0.65, recal.'}, ...
+            'Location','northeast','Box','on','Color','w','FontSize',7.0);
     end
 end
 set(findall(fig,'Type','axes'),'FontName','Arial','FontSize',10,'LineWidth',.8);

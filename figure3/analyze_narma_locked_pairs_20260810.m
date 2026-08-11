@@ -1,4 +1,4 @@
-%% Analyze the 30 preregistered locked NARMA10 pairs without retuning.
+%% Analyze the 30 prospectively frozen locked NARMA10 pairs without retuning.
 
 clear; clc; close all;
 scriptDir = fileparts(mfilename('fullpath'));

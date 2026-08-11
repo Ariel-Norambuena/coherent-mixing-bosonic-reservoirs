@@ -12,7 +12,9 @@ trajectories contract at the loss-controlled rate, and coherent hopping changes
 which temporal histories are exposed by a specified observable. The original
 30-pair NARMA10 bank and a fresh deterministic one-copy bank both show a hopping
 gain in every realization. Compact intensity readout and coherent phase-channel
-equalization reverse the intervention. The repository therefore supports an
+processing reverse the intervention. Full-I/Q digital baselines outperform all
+phase-only models, so the second task is a synthetic phase-stream stress test,
+not a competitive coherent equalizer. The repository therefore supports an
 observable- and task-dependent claim, not a universal or quantum advantage.
 
 ## Quick reproduction
@@ -46,13 +48,17 @@ benchmarks. Neither command needs the large temporary state caches.
   config SHA-256 `74a9ddf95b1e55f14ff6d6b5658083335c3160a4f9789597116d4b427c11e631`
 - Phase-channel config SHA-256:
   `14a59690c6d3905d24daa7b69543ebc3a918246f7e413113336a604998c5627e`
+- Deterministic spectrum control: ten paired validation offsets, with an
+  equal-frequency condition that removes the hopping gain.
+- Centered-signal receiver audit: no low-power or fabrication-ready operating
+  point is claimed.
 
 No physical, feature, or ridge choice is selected from the locked test bank.
 
 ## Repository contents
 
-- `figure1/`, `figure2/`: Kerr-response and synchronization generators used in
-  the Supplemental Material.
+- `figure1/`, `figure2/`: legacy Kerr-response and synchronization generators
+  retained as development provenance; they are not part of the current claim.
 - `figure3/`: simulator, selection and locked launchers, classical baselines,
   ablations, capacities, perturbations, tests, compact tables, and final plots.
 - `run_all.m`: compact reproduction, compact verification, and archival audit
@@ -79,10 +85,12 @@ locked, baseline, mechanism, and robustness launchers are documented in
 
 Compact CSV tables contain every numerical value used in the article and all
 seed-level endpoints needed for the published plots, including the fresh
-minimal-architecture and coherent phase-channel banks. Large complex-state
+minimal-architecture and synthetic phase-stream banks, equal-frequency
+control, full-I/Q audit, and centered-signal physical audit. Large complex-state
 caches are excluded because the tracked launchers regenerate them
 deterministically. The robustness claim is calibration conditioned; the
-repository does not claim uncalibrated fabrication tolerance.
+repository does not claim uncalibrated fabrication tolerance or a physically
+self-consistent low-power scaling point.
 
 ## Citation and license
 

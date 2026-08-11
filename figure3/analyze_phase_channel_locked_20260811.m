@@ -1,4 +1,4 @@
-%% Analyze locked coherent phase-channel equalization and digital baselines.
+%% Analyze locked synthetic coherent phase-stream processing and baselines.
 
 clear;clc;close all;scriptDir=fileparts(mfilename('fullpath'));
 lockedFile=fullfile(scriptDir,'configs','phase_channel_locked_config_20260811.json');
@@ -42,7 +42,7 @@ fig=figure('Color','w','Units','inches','Position',[1 1 8.2 4.2]);
 tl=tiledlayout(fig,1,2,'TileSpacing','compact','Padding','compact');colors=[.35 .35 .35;.20 .55 .72;.45 .28 .68;.15 .38 .70;.84 .24 .18];
 nexttile;hold on;for m=1:nMethod,scatter(m+.10*linspace(-1,1,n),nrmse(:,m),18,colors(m,:),'filled','MarkerFaceAlpha',.42);plot([m-.22 m+.22],meanNRMSE(m)*[1 1],'-','Color',colors(m,:),'LineWidth',2);end;xticks(1:nMethod);xticklabels({'direct','linear','NVAR2','$J=0$','coupled'});set(gca,'TickLabelInterpreter','latex');xtickangle(20);ylabel('test NRMSE');title('(a) Phase-channel regression','Interpreter','latex');grid on;box on;
 nexttile;hold on;for m=1:nMethod,scatter(m+.10*linspace(-1,1,n),ber(:,m),18,colors(m,:),'filled','MarkerFaceAlpha',.42);plot([m-.22 m+.22],meanBER(m)*[1 1],'-','Color',colors(m,:),'LineWidth',2);end;xticks(1:nMethod);xticklabels({'direct','linear','NVAR2','$J=0$','coupled'});set(gca,'TickLabelInterpreter','latex');xtickangle(20);ylabel('bit-error rate');title('(b) Symbol recovery','Interpreter','latex');grid on;box on;
-title(tl,'Coherent BPSK phase-channel equalization','Interpreter','latex');set(findall(fig,'-property','FontSize'),'FontSize',11);
+title(tl,'Synthetic coherent BPSK phase-stream processing','Interpreter','latex');set(findall(fig,'-property','FontSize'),'FontSize',11);
 exportgraphics(fig,fullfile(scriptDir,'PhaseChannelLocked_20260811.pdf'),'ContentType','vector');exportgraphics(fig,fullfile(scriptDir,'PhaseChannelLocked_20260811.png'),'Resolution',300);close(fig);
 fprintf(['PHASE_LOCKED_ANALYSIS_PASS coupling %d/%d delta=%.6f ' ...
     'J0_vs_NVAR2 %d/%d delta=%.6f BER %d/%d delta=%.6f\n'], ...

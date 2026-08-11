@@ -1,4 +1,4 @@
-%% Execute one preregistered locked NARMA10 pair and all budget variants.
+%% Execute one prospectively frozen locked NARMA10 pair and all budget variants.
 
 clearvars -except KERR_NARMA_LOCKED_INDEX;
 clc;

@@ -41,7 +41,7 @@ as explicitly permitted by the referee report.
 - Intensity mean test NRMSE: `0.314494` at `J=0` and `0.324800` at `J=0.65`;
   only `7/30` pairs improve. The intervention therefore reverses by observable.
 
-## Fair comparison
+## Coefficient-budget comparison
 
 At the requested 351-coefficient budget, mean locked test NRMSE is `0.384590`
 for input delays, `0.120733` for NVAR2, `0.815663` for NVAR3, and `0.259619`
@@ -92,11 +92,11 @@ RF drivers, ADCs, stabilization, and wall-plug efficiency; the article says so.
 
 ## 2026-08-11 final-referee extension
 
-- Replaced the weak single-trajectory Mackey--Glass diagnostic with coherent
-  BPSK phase-channel equalization defined by a fixed complex five-tap channel,
+- Replaced the weak single-trajectory Mackey--Glass diagnostic with a synthetic
+  coherent BPSK phase stream defined by a fixed complex five-tap channel,
   nonlinear phase rotation, additive circular Gaussian noise, and decision
   delay two.
-- Preregistered a deterministic architecture reduction before fresh testing.
+- Prospectively froze a deterministic architecture reduction before fresh testing.
   Validation selected one 12-mode copy with global modulation at `J=0.65`.
   One, two, and three identical copies are redundant to numerical roundoff.
 - On fresh NARMA10 offsets 3001--3030, hopping improves all 30 pairs; mean NRMSE
@@ -110,3 +110,22 @@ RF drivers, ADCs, stabilization, and wall-plug efficiency; the article says so.
   baths are absent.
 - Final compact reproduction, isolated Overleaf compilation, LaTeX audit, and
   page-by-page visual inspection pass.
+
+## 2026-08-11 comparative-referee closure
+
+- Replaced the occupation-based receiver conversion with channelwise centered
+  quadrature variance propagated through standardization and PCA. The median
+  retained-component counts at the normalization reference are `1.61165e-7`
+  and `5.93421e-8` for `J=0/0.65`.
+- Common scaling to `N_eff=1e4` would require `13.8988/37.7472 W/ring`, but a
+  representative stoichiometric-SiN audit gives residual-Kerr ratios
+  `1.40e4/3.55e3`. These are incompatibility diagnostics, not proposed powers.
+- Added the reviewer-requested equal-frequency control. A deterministic
+  nondegenerate spectrum is necessary even though random disorder is not.
+- Added full-I/Q linear and NVAR2 baselines. Their mean locked NRMSE values are
+  `0.089053` and `0.092861`, and both beat every phase-only method in 30/30
+  realizations. The task is now framed as a synthetic phase-stream stress test.
+- Separated the 338 trained readout weights from explicit PCA and fused-linear
+  MAC counts; changed the comparison terminology to coefficient budget.
+- Replaced "preregistered" by "prospectively frozen" and withdrew all
+  low-power, direct coherent-equalizer, and fabrication-ready claims.
