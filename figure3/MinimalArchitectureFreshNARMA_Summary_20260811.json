@@ -1,0 +1,15 @@
+{
+  "metric": "NRMSE",
+  "pairs": 30,
+  "control_mean": 0.33176912592843372,
+  "coupled_mean": 0.2821655196757345,
+  "mean_improvement": 0.049603606252699266,
+  "improved_pairs": 30,
+  "bootstrap_ci95": [
+    0.047872933051661251,
+    0.051384242036840617
+  ],
+  "cohen_dz": 9.9378650471299412,
+  "sign_flip_p": 9.99990000099999E-6,
+  "config_sha256": "74a9ddf95b1e55f14ff6d6b5658083335c3160a4f9789597116d4b427c11e631"
+}

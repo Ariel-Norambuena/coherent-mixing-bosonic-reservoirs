@@ -131,6 +131,11 @@ if exist('KERR_NARMA_COPY_DETUNING_DISORDER','var')
 else
     overrideCopyDetuningDisorder = [];
 end
+if exist('KERR_NARMA_NUM_RESERVOIRS','var')
+    overrideNumReservoirs = KERR_NARMA_NUM_RESERVOIRS;
+else
+    overrideNumReservoirs = [];
+end
 if exist('KERR_NARMA_PROTOCOL_MODE','var')
     overrideProtocolMode = char(KERR_NARMA_PROTOCOL_MODE);
 else
@@ -203,7 +208,7 @@ else
 end
 overrideLockedPair = exist('KERR_NARMA_LOCKED_PAIR','var') && ...
     KERR_NARMA_LOCKED_PAIR;
-clearvars -except overrideQuick overrideSmoke overrideKSweep overrideJSweep overrideFeatureAblations overrideSkipPhysical overrideSkipBaselines overrideDisablePlots overrideOutputTag overrideKList overrideJList overrideJSweepKList overrideSeedOffset overrideBaseK overrideBaseJ overrideFeatureCases overrideFeatureModes overrideBaseFeatureMode overrideCustomInputRaw overrideCustomInputEncoded overrideCustomTarget overrideTaskLabel overrideValidateFeatureCache overrideSaveRawFeatures overrideSaveCompactFeatures overrideInputMode overrideGDeltaMode overrideGFMode overrideDisableStaticDisorder overrideCopyDisorderScale overrideCopyDetuningDisorder overrideProtocolMode overrideNPC overrideTapDelays overrideStepsPerSample overrideDt overrideInputMask overrideInputBias overrideNumVirtual overrideInputGainScale overrideVirtualNodeIdx overrideReadoutVariants overrideFeatureBudgetVariants overrideFeatureBudgetLambdaMap overrideLambdaGrid overrideLockedPair;
+clearvars -except overrideQuick overrideSmoke overrideKSweep overrideJSweep overrideFeatureAblations overrideSkipPhysical overrideSkipBaselines overrideDisablePlots overrideOutputTag overrideKList overrideJList overrideJSweepKList overrideSeedOffset overrideBaseK overrideBaseJ overrideFeatureCases overrideFeatureModes overrideBaseFeatureMode overrideCustomInputRaw overrideCustomInputEncoded overrideCustomTarget overrideTaskLabel overrideValidateFeatureCache overrideSaveRawFeatures overrideSaveCompactFeatures overrideInputMode overrideGDeltaMode overrideGFMode overrideDisableStaticDisorder overrideCopyDisorderScale overrideCopyDetuningDisorder overrideNumReservoirs overrideProtocolMode overrideNPC overrideTapDelays overrideStepsPerSample overrideDt overrideInputMask overrideInputBias overrideNumVirtual overrideInputGainScale overrideVirtualNodeIdx overrideReadoutVariants overrideFeatureBudgetVariants overrideFeatureBudgetLambdaMap overrideLambdaGrid overrideLockedPair;
 close all; clc;
 
 %% ========================== User configuration ============================
@@ -436,6 +441,14 @@ if overrideSkipPhysical
 end
 
 % Explicit revision-protocol overrides are applied after quick/smoke presets.
+if ~isempty(overrideNumReservoirs)
+    if ~isscalar(overrideNumReservoirs) || ~isfinite(overrideNumReservoirs) || ...
+            overrideNumReservoirs < 1 || ...
+            overrideNumReservoirs ~= floor(overrideNumReservoirs)
+        error('KERR_NARMA_NUM_RESERVOIRS must be a positive integer.');
+    end
+    cfg.numReservoirs = overrideNumReservoirs;
+end
 if ~isempty(overrideNPC)
     if ~isscalar(overrideNPC) || ~isfinite(overrideNPC) || ...
             overrideNPC < 1 || overrideNPC ~= floor(overrideNPC)

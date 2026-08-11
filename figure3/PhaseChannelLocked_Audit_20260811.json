@@ -1,0 +1,25 @@
+{
+  "pairs": 30,
+  "coupled_nrmse_improved": 0,
+  "mean_nrmse_improvement": -0.042554696692888472,
+  "nrmse_bootstrap_ci95": [
+    -0.043451271150999581,
+    -0.041696265156348222
+  ],
+  "nrmse_sign_flip_p": 9.99990000099999E-6,
+  "coupled_ber_improved": 1,
+  "mean_ber_improvement": -1.111111111111111E-5,
+  "ber_bootstrap_ci95": [
+    -4.444444444444444E-5,
+    2.222222222222222E-5
+  ],
+  "ber_sign_flip_p": 1,
+  "config_sha256": "14a59690c6d3905d24daa7b69543ebc3a918246f7e413113336a604998c5627e",
+  "J0_better_than_NVAR2_pairs": 30,
+  "mean_NVAR2_minus_J0_nrmse": 0.023892992743659264,
+  "NVAR2_minus_J0_bootstrap_ci95": [
+    0.023138840186104296,
+    0.024658861644695593
+  ],
+  "NVAR2_minus_J0_sign_flip_p": 9.99990000099999E-6
+}

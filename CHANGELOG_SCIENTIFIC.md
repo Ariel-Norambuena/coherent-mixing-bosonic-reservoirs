@@ -89,3 +89,24 @@ RF drivers, ADCs, stabilization, and wall-plug efficiency; the article says so.
 - Clean, marked, and Supplemental LaTeX builds: PASS with zero overfull boxes,
   undefined references/citations, or stuck/deferred floats.
 - All pages of the final PDFs were rendered and visually inspected.
+
+## 2026-08-11 final-referee extension
+
+- Replaced the weak single-trajectory Mackey--Glass diagnostic with coherent
+  BPSK phase-channel equalization defined by a fixed complex five-tap channel,
+  nonlinear phase rotation, additive circular Gaussian noise, and decision
+  delay two.
+- Preregistered a deterministic architecture reduction before fresh testing.
+  Validation selected one 12-mode copy with global modulation at `J=0.65`.
+  One, two, and three identical copies are redundant to numerical roundoff.
+- On fresh NARMA10 offsets 3001--3030, hopping improves all 30 pairs; mean NRMSE
+  changes from `0.331769` to `0.282166`.
+- On fresh phase-channel offsets 4001--4030, the uncoupled bosonic map has lower
+  soft NRMSE than NVAR2 in all 30 pairs, while hopping worsens all 30. Binary
+  error is saturated, so no detection-advantage claim is made.
+- The manuscript now begins from the driven Bose--Hubbard Hamiltonian and an
+  explicit Lindblad equation with independent vacuum amplitude damping. It
+  states that dephasing, thermal occupation, two-photon loss, and correlated
+  baths are absent.
+- Final compact reproduction, isolated Overleaf compilation, LaTeX audit, and
+  page-by-page visual inspection pass.

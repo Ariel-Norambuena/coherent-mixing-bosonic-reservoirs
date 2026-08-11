@@ -1,0 +1,31 @@
+{
+  "schema_version": 1,
+  "status": "stage_a_selection_complete",
+  "test_metrics_evaluated": false,
+  "protocol_sha256": "ac1f6eed686e4c48a863b2f13a0d9e35078f3f7cdb802a5f0504b828098ba869",
+  "selection_offsets": [
+    101,
+    102,
+    103,
+    104,
+    105,
+    106,
+    107,
+    108,
+    109,
+    110
+  ],
+  "selected": {
+    "J": 0.65,
+    "input_gain_scale": 1,
+    "ridge_lambda": 1E-6,
+    "mean_validation_nrmse": 0.27406775877384854,
+    "sd_validation_nrmse": 0.010877989145942006
+  },
+  "control": {
+    "J": 0,
+    "ridge_lambda": 4.6415888336127825E-5,
+    "mean_validation_nrmse": 0.32556699648308612,
+    "sd_validation_nrmse": 0.0084445638295657065
+  }
+}

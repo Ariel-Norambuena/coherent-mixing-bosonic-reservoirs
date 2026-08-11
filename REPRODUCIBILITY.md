@@ -25,15 +25,15 @@ matlab -batch "run_all('full_audit')"
 `full_audit` requires regenerated trajectory summaries that are intentionally
 excluded from the compact public repository.
 
-The analysis command reads compact, versioned CSV/MAT artifacts. It does not
-rerun the 30-pair dynamical bank or overwrite large trajectory results.
+The analysis command reads compact, versioned CSV/JSON artifacts and fixed
+signal seeds. It does not rerun any 30-pair dynamical bank or overwrite large
+trajectory results.
 
-Compile the clean manuscript, marked manuscript, and Supplemental Material:
+Compile the clean manuscript and Supplemental Material in the full workspace:
 
 ```powershell
-latexmk -pdf -interaction=nonstopmode -halt-on-error Manuscript/Article_revision_20260810.tex
-latexmk -pdf -interaction=nonstopmode -halt-on-error Manuscript/Article_marked_20260810.tex
-latexmk -pdf -interaction=nonstopmode -halt-on-error Manuscript/Supplement_revision_20260810.tex
+latexmk -pdf -interaction=nonstopmode -halt-on-error Manuscript/Article_revision_20260811.tex
+latexmk -pdf -interaction=nonstopmode -halt-on-error Manuscript/Supplement_revision_20260811.tex
 ```
 
 ## Frozen confirmatory protocol
@@ -59,6 +59,11 @@ powershell -File "Figure 3/run_narma_locked_pairs_parallel_20260810.ps1"
 powershell -File "Figure 3/run_narma_baseline_locked_parallel_20260810.ps1"
 powershell -File "Figure 3/run_narma_mechanism_ablation_parallel_20260810.ps1"
 powershell -File "Figure 3/run_narma_measurement_robustness_parallel_20260810.ps1"
+powershell -File "Figure 3/run_minimal_architecture_stage_a_parallel_20260811.ps1"
+powershell -File "Figure 3/run_minimal_architecture_copy_parallel_20260811.ps1"
+powershell -File "Figure 3/run_minimal_architecture_locked_parallel_20260811.ps1"
+powershell -File "Figure 3/run_phase_channel_selection_parallel_20260811.ps1"
+powershell -File "Figure 3/run_phase_channel_locked_parallel_20260811.ps1"
 ```
 
 These launchers are computationally expensive and collision guarded. Existing
@@ -71,6 +76,11 @@ target alignment, causal split boundaries, independent metric calculations,
 cached/direct feature equivalence, deterministic repeated execution, solver
 convergence, exact Kerr-free contraction, finite result values, and figure
 provenance through compact result tables.
+
+The minimal architecture uses fresh NARMA10 offsets 3001--3030. The coherent
+phase-channel task uses validation offsets 201--210 and locked offsets
+4001--4030. Their frozen configuration hashes are listed in `README.md` and
+`RESULTS_MANIFEST.md`.
 
 See `RESULTS_MANIFEST.md` for the script, configuration, input, output, and
 SHA-256 lineage of every submission-facing artifact.

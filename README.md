@@ -9,11 +9,11 @@ figure generators for:
 The central result concerns a Kerr-free, driven, lossy bosonic network with
 input-dependent detuning. The state equation is affine-bilinear, equal-input
 trajectories contract at the loss-controlled rate, and coherent hopping changes
-which temporal histories are exposed by a specified observable. In 30 frozen
-paired NARMA10 tests, hopping improves quadrature readout in every realization
-but degrades compact intensity readout on average. The repository therefore
-supports an observable- and task-dependent claim, not a universal or quantum
-advantage.
+which temporal histories are exposed by a specified observable. The original
+30-pair NARMA10 bank and a fresh deterministic one-copy bank both show a hopping
+gain in every realization. Compact intensity readout and coherent phase-channel
+equalization reverse the intervention. The repository therefore supports an
+observable- and task-dependent claim, not a universal or quantum advantage.
 
 ## Quick reproduction
 
@@ -28,10 +28,10 @@ matlab -batch "run_all('analysis')"
 matlab -batch "run_all('verify')"
 ```
 
-`analysis` regenerates all six vector figure components used by the five main
-figures. `verify` additionally checks compact table dimensions, finite values,
-the frozen locked endpoints, and output presence. Neither command needs the
-large temporary state caches.
+`analysis` regenerates every final vector figure from compact tables or fixed
+seeds. `verify` additionally checks table dimensions, finite values, the frozen
+locked endpoints, and the 30-pair directions of the minimal NARMA10 and phase
+benchmarks. Neither command needs the large temporary state caches.
 
 ## Frozen protocol
 
@@ -42,6 +42,10 @@ large temporary state caches.
 - Selection offsets: 101--110
 - Locked offsets: 1001--1030
 - Primary readout: 26 PCs, 13 causal delay blocks, 339 coefficients including bias
+- Minimal architecture: one deterministic 12-mode copy, global gain `1.00`,
+  config SHA-256 `74a9ddf95b1e55f14ff6d6b5658083335c3160a4f9789597116d4b427c11e631`
+- Phase-channel config SHA-256:
+  `14a59690c6d3905d24daa7b69543ebc3a918246f7e413113336a604998c5627e`
 
 No physical, feature, or ridge choice is selected from the locked test bank.
 
@@ -74,10 +78,11 @@ locked, baseline, mechanism, and robustness launchers are documented in
 ## Data scope
 
 Compact CSV tables contain every numerical value used in the article and all
-seed-level endpoints needed for the published plots. Large complex-state caches
-are excluded because the tracked launchers regenerate them deterministically.
-The robustness claim is calibration conditioned; the repository does not claim
-uncalibrated fabrication tolerance.
+seed-level endpoints needed for the published plots, including the fresh
+minimal-architecture and coherent phase-channel banks. Large complex-state
+caches are excluded because the tracked launchers regenerate them
+deterministically. The robustness claim is calibration conditioned; the
+repository does not claim uncalibrated fabrication tolerance.
 
 ## Citation and license
 

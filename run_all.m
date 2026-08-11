@@ -20,12 +20,15 @@ addpath(figureDir);
 
 analysisScripts = {
     'verify_k0_contraction_20260810.m'
-    'generate_figure1_architecture_mechanism_20260810.m'
-    'generate_figure2_selection_capacity_20260810.m'
+    'generate_figure1_architecture_mechanism_20260811.m'
+    'generate_figure2_selection_capacity_20260811.m'
+    'generate_signal_complexity_extended_20260811.m'
     'plot_narma_locked_pairs_from_tables_20260810.m'
     'plot_narma_mechanism_from_tables_20260810.m'
     'plot_narma_fair_comparison_from_tables_20260810.m'
     'plot_narma_robustness_from_tables_20260810.m'
+    'plot_photon_precision_from_table_20260811.m'
+    'generate_figure_minimal_phase_20260811.m'
     };
 
 for idx = 1:numel(analysisScripts)
@@ -76,8 +79,11 @@ requiredOutputs = {
     'NARMAProcessingCapacity_Summary_20260810.csv'
     'NARMAMeasurementRobustness_Summary_20260810.csv'
     'HardwareResourceBudget_20260810.csv'
-    'Figure1_ArchitectureMechanism_20260810.pdf'
-    'Figure2_SelectionCapacity_20260810.pdf'
+    'Figure1_PhysicalMechanism_20260811.pdf'
+    'Figure2_KerrFreeSelectionMemory_20260811.pdf'
+    'Figure3_TaskSignalComplexityExtended_20260811.pdf'
+    'Figure6_MinimalArchitectureTasks_20260811.pdf'
+    'FigS_PhotonPrecision_20260811.pdf'
     };
 missing = requiredOutputs(~cellfun(@isfile, requiredOutputs));
 assert(isempty(missing), 'Missing expected output(s): %s', strjoin(missing, ', '));

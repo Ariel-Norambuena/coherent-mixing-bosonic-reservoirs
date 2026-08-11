@@ -7,8 +7,8 @@ baseline=readtable(fullfile(scriptDir, ...
     'NARMABaselineLocked_Statistics_20260810.csv'),'TextType','string');
 assert(height(physical)==28 && height(baseline)==28);
 
-fig=figure('Color','w','Visible','off','Units','inches','Position',[1 1 7.2 3.6]);
-tiledlayout(1,2,'Padding','compact','TileSpacing','compact');
+fig=figure('Color','w','Visible','off','Units','inches','Position',[1 1 3.45 5.7]);
+tiledlayout(2,1,'Padding','compact','TileSpacing','compact');
 colors=struct('j0',[.18 .39 .66],'j65',[.78 .25 .20], ...
     'esn',[.43 .27 .70],'nvar2',[.12 .55 .36], ...
     'nvar3',[.76 .42 .16],'input',[.35 .35 .35]);
@@ -24,7 +24,7 @@ set(ax1,'XScale','log'); xlim(ax1,[45 2300]); ylim(ax1,[0.04 .88]);
 xlabel(ax1,'trained coefficients including bias'); ylabel(ax1,'test NRMSE');
 title(ax1,'(a) Equal-readout comparison','FontWeight','normal');
 legend(ax1,'Location','southoutside','Orientation','horizontal', ...
-    'NumColumns',2,'Box','off','FontSize',6.5); grid(ax1,'on'); box(ax1,'on');
+    'NumColumns',2,'Box','off','FontSize',7.5); grid(ax1,'on'); box(ax1,'on');
 
 ax2=nexttile; hold(ax2,'on');
 plotPhysical(ax2,physical,"number_features",0,colors.j0,'o-','intensity, J=0');
@@ -35,7 +35,7 @@ set(ax2,'XScale','log'); xlim(ax2,[45 2300]); ylim(ax2,[0.24 .44]);
 xlabel(ax2,'trained coefficients including bias'); ylabel(ax2,'test NRMSE');
 title(ax2,'(b) Observable dependence','FontWeight','normal');
 legend(ax2,'Location','southoutside','Orientation','horizontal', ...
-    'NumColumns',2,'Box','off','FontSize',6.5); grid(ax2,'on'); box(ax2,'on');
+    'NumColumns',2,'Box','off','FontSize',7.5); grid(ax2,'on'); box(ax2,'on');
 set([ax1 ax2],'FontName','Arial','FontSize',9.5,'LineWidth',.8);
 exportgraphics(fig,fullfile(scriptDir,'NARMAFairComparison_20260810.pdf'), ...
     'ContentType','vector');
