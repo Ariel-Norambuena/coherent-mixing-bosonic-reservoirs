@@ -84,7 +84,8 @@ requiredOutputs = {
     'Figure3_TaskSignalComplexityExtended_20260811.pdf'
     'Figure6_MinimalArchitectureTasks_20260811.pdf'
     'FigS_PhotonPrecision_20260811.pdf'
-    'DynamicPhotonKerrThermalAudit_20260812.csv'
+    'DynamicPhotonKerrMultiOffset_Raw_20260813.csv'
+    'DynamicPhotonKerrMultiOffset_Summary_20260813.csv'
     'EqualFrequencyControl_Summary_20260812.csv'
     'PhaseChannelFullIQ_Summary_20260812.csv'
     };

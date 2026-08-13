@@ -141,3 +141,19 @@ RF drivers, ADCs, stabilization, and wall-plug efficiency; the article says so.
 - Reframed NARMA10 as a structure-known diagnostic of fading memory and
   nonlinear mixing, rather than an application proxy or universal reservoir
   benchmark.
+
+## 2026-08-13 v2.2.3 applied-frontier and reproducibility closure
+
+- Extended the centered-signal receiver calculation from one representative
+  trajectory to all ten prospectively defined selection offsets for both
+  coupling conditions.
+- Quantified the conservative residual-Kerr boundary and the four-to-five-order
+  useful-signal/Kerr improvement required to reach the numerical precision
+  target without crossing it.
+- Corrected every public path in `REPRODUCIBILITY.md` from the archival
+  `Figure 3/` name to the actual public `figure3/` directory and separated
+  compact reproduction from full numerical regeneration.
+- Strengthened the compact test with explicit identifier ordering and direct
+  per-realization checks that both full-I/Q baselines beat every phase-only
+  baseline in all 30 locked pairs.
+- Lifted the Fig. 1 phase annotation and simplified the dense Fig. 6(d) labels.

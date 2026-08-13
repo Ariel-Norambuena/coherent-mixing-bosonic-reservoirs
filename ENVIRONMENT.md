@@ -2,7 +2,8 @@
 
 The final revision was generated on:
 
-- Microsoft Windows 11 Pro, build 26200.
+- Microsoft Windows 11 Pro, build 26200, on a 12-core/24-thread workstation
+  with 64 GB physical RAM.
 - MATLAB R2025b, version 25.2.0.2998904.
 - Parallel Computing Toolbox for the multi-process launchers.
 - Statistics and Machine Learning Toolbox for PCA and statistical utilities.
@@ -11,7 +12,7 @@ The final revision was generated on:
 The core reservoir integrator, feature construction, ridge solution, and
 compact-table analyzers are MATLAB code. No Java runtime is required. The
 paper-grade runs use fixed-step fourth-order Runge--Kutta integration and the
-frozen JSON configurations under `Figure 3/configs/`.
+frozen JSON configurations under `figure3/configs/`.
 
 The locked physical test and classical comparison were executed as separate
 processes using the PowerShell launchers. Compact CSV, JSON, and PDF artifacts

@@ -31,9 +31,10 @@ matlab -batch "run_all('verify')"
 ```
 
 `analysis` regenerates every final vector figure from compact tables or fixed
-seeds. `verify` additionally checks table dimensions, finite values, the frozen
-locked endpoints, and the 30-pair directions of the minimal NARMA10 and phase
-benchmarks. Neither command needs the large temporary state caches.
+seeds. `verify` additionally checks table dimensions, finite values, identifier
+order, frozen endpoints, and the 30-pair directions of the minimal NARMA10,
+phase, and full-I/Q comparisons. Neither command needs the large temporary
+state caches.
 
 ## Frozen protocol
 
@@ -86,7 +87,7 @@ locked, baseline, mechanism, and robustness launchers are documented in
 Compact CSV tables contain every numerical value used in the article and all
 seed-level endpoints needed for the published plots, including the fresh
 minimal-architecture and synthetic phase-stream banks, equal-frequency
-control, full-I/Q audit, and centered-signal physical audit. Large complex-state
+control, full-I/Q audit, and ten-offset centered-signal physical audit. Large complex-state
 caches are excluded because the tracked launchers regenerate them
 deterministically. The robustness claim is calibration conditioned; the
 repository does not claim uncalibrated fabrication tolerance or a physically

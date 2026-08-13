@@ -7,7 +7,7 @@ final LaTeX compilation on 2026-08-13. Paths are relative to the project root.
 
 | Artifact | Purpose | SHA-256 |
 |---|---|---|
-| `run_all.m` | compact reproduction and verification entry point | `2bfe4d7d66f74850838ae586907d7aa7f72b99bc444c330ab4bd33f0d52c583e` |
+| `run_all.m` | compact reproduction and verification entry point | `4056e1ca531318f73ce7038640ee30e9007ba325fca858c86d202a6c93fc6b51` |
 | `figure3/configs/narma_revision_protocol_20260807.json` | disjoint development, selection, and locked banks | `7bd8e7f4719457accf4197dbe73cb3095bb4f7be8935dbc1a0eed737c64e3175` |
 | `figure3/configs/narma_locked_config_20260810.json` | frozen physical architecture and primary endpoint | `68eec107bb9bf7092b5954991020244521346c85a256d44deb4890394b25f41d` |
 | `figure3/configs/narma_locked_comparison_config_20260810.json` | physical and classical budget curves | `aee5d4687004f806762a648cd8c90f583d70bf4c327d68856613ad051a6672ba` |
@@ -48,6 +48,8 @@ final LaTeX compilation on 2026-08-13. Paths are relative to the project root.
 | `figure3/TaskSignalTracesExtended_20260811.csv` | `generate_signal_complexity_extended_20260811.m` | `174190cf9b94ae550a273b70478a220b1f2d56d62f49e491c891eef9b664744e` |
 | `figure3/TaskSignalSpectraExtended_20260811.csv` | `generate_signal_complexity_extended_20260811.m` | `437499c38d2124cd57b65cdcd7658a57650ea8bc369712d51fe3ceeb391f3ab4` |
 | `figure3/DynamicPhotonKerrThermalAudit_20260812.csv` | `analyze_dynamic_photon_kerr_thermal_20260812.m` | `2130ddc6eca32d7470d6dddabf0d4643a71e6d54e7b174041f7aca82c0381912` |
+| `figure3/DynamicPhotonKerrMultiOffset_Raw_20260813.csv` | `analyze_dynamic_photon_kerr_multioffset_20260813.m` | `86f3c32f2432706e8bf515e1810d8e33aad9694f5bdc67d574b549421066f87e` |
+| `figure3/DynamicPhotonKerrMultiOffset_Summary_20260813.csv` | `analyze_dynamic_photon_kerr_multioffset_20260813.m` | `53e13e1f8963e0cb521951dd58988b39811b9d6257e661ec477f4434ad55e5dd` |
 | `figure3/EqualFrequencyControl_Raw_20260812.csv` | `analyze_equal_frequency_control_20260812.m` | `c290f4d0a175122f16ccfc861d98680ade9d5730ff24c8fa4b6fb80c33a843d5` |
 | `figure3/EqualFrequencyControl_Summary_20260812.csv` | `analyze_equal_frequency_control_20260812.m` | `3b3a7d62cc533a606b254dba362bbbd711893345c9156d098545d3f85a80e391` |
 | `figure3/PhaseChannelFullIQ_Selection_20260812.csv` | `analyze_phase_channel_full_iq_20260812.m` | `05c1c1670c8d4fcc8d2d337b15c3e677c497075a97a443757bbb294cf60b9595` |
@@ -60,15 +62,15 @@ final LaTeX compilation on 2026-08-13. Paths are relative to the project root.
 |---|---|---|---|
 | `figure3/Figure1_ArchitectureMechanism_20260810.pdf` | `generate_figure1_architecture_mechanism_20260810.m` | locked config, contraction verification | `49e4a2af67a8173da2906286c2dd48f82b62703bed8054f1fb32cb688b16c84e` |
 | `figure3/Figure2_SelectionCapacity_20260810.pdf` | `generate_figure2_selection_capacity_20260810.m` | stage-1, stage-2, capacity tables | `a5faf671efe1bfdd245c39ad9dc5093f47b97423a413ff73c9ae81647878e6a0` |
-| `figure3/NARMALockedPairs_20260810.pdf` | `plot_narma_locked_pairs_from_tables_20260810.m` | 30-pair locked CSV files | `a4c59af645942ef7add559a78228817e3e46f3beb372fed5318181b615e67738` |
-| `figure3/NARMAMechanismAblation_20260810.pdf` | `plot_narma_mechanism_from_tables_20260810.m` | equal-budget ablation CSV files | `16dbfe5eda1e11c4b62d02ba2a57265b7a58329b34a0b412fe4199c712e57bc9` |
-| `figure3/NARMAFairComparison_20260810.pdf` | `plot_narma_fair_comparison_from_tables_20260810.m` | physical and classical budget tables | `6a68fd296e86fdff84bee33b9002ec9ca1af36df34276c6c4e43118991036f46` |
-| `figure3/NARMAMeasurementRobustness_20260810.pdf` | `plot_narma_robustness_from_tables_20260810.m` | 2,900-row perturbation table | `b7b2980549c0bb9d5a764cfd9c24baf5ccfd8b49110548df2de6a59d16e826db` |
-| `figure3/Figure1_PhysicalMechanism_20260811.pdf` | `generate_figure1_architecture_mechanism_20260811.m` | locked config and exact contraction | `9d831df8dac33891dd823c8e5fa3b24e239aae35e34787012b8c8089db7c9e8e` |
-| `figure3/Figure2_KerrFreeSelectionMemory_20260811.pdf` | `generate_figure2_selection_capacity_20260811.m` | selection and lag-capacity tables | `b696c91e7e0b5d6fa2cdf6489e22d951af2f5abc973cb4530d8f46c3fd2860d6` |
-| `figure3/Figure3_TaskSignalComplexityExtended_20260811.pdf` | `generate_signal_complexity_extended_20260811.m` | fixed NARMA10 and phase-channel seeds | `a8850f0d7ad8ae7706e2966118d039d7b6b66470ac7f85e4c16e9c5d81591e8a` |
-| `figure3/Figure6_MinimalArchitectureTasks_20260811.pdf` | `generate_figure_minimal_phase_20260811.m` | minimal, equal-frequency, phase, and full-I/Q tables | `50236a14e3da04666c0602f36ff116f2f05c616f1931011ac598f46e092613c2` |
-| `figure3/FigS_PhotonPrecision_20260811.pdf` | `plot_dynamic_photon_kerr_thermal_20260812.m` | centered-signal photon/Kerr/thermal table | `e554b46c4d6ce4424feaea933f83651133b20c1f0fb6f6c1fbaee7269449873e` |
+| `figure3/NARMALockedPairs_20260810.pdf` | `plot_narma_locked_pairs_from_tables_20260810.m` | 30-pair locked CSV files | `66a81f1ceb3a6bf99b7f0b63bf3930732ef8f33452949ca25115948c852a2ab6` |
+| `figure3/NARMAMechanismAblation_20260810.pdf` | `plot_narma_mechanism_from_tables_20260810.m` | equal-budget ablation CSV files | `0197f59f698ebb01976676e59e238e4117452fa4d531aace03447aad484bf307` |
+| `figure3/NARMAFairComparison_20260810.pdf` | `plot_narma_fair_comparison_from_tables_20260810.m` | physical and classical budget tables | `fd99c709029c19022043c2fe55d040a08f50db48109794f224b187e017cb9f98` |
+| `figure3/NARMAMeasurementRobustness_20260810.pdf` | `plot_narma_robustness_from_tables_20260810.m` | 2,900-row perturbation table | `9e1b80168fc8a56a6c1f9d22ff1c2068656354718a92dce617d685c544d289ff` |
+| `figure3/Figure1_PhysicalMechanism_20260811.pdf` | `generate_figure1_architecture_mechanism_20260811.m` | locked config and exact contraction | `e934a1d895915e725baaa5acc5846a92922447648512911255ac5fb6475fb19b` |
+| `figure3/Figure2_KerrFreeSelectionMemory_20260811.pdf` | `generate_figure2_selection_capacity_20260811.m` | selection and lag-capacity tables | `cad1760132343802ffa6860d07736b9265f8aee4bef1dfd54c2d55c836e7c8ce` |
+| `figure3/Figure3_TaskSignalComplexityExtended_20260811.pdf` | `generate_signal_complexity_extended_20260811.m` | fixed NARMA10 and phase-channel seeds | `b48ab263e81c3f5016c7ddf4f4793dbfde10a6f93704241e09ce0c5425324db8` |
+| `figure3/Figure6_MinimalArchitectureTasks_20260811.pdf` | `generate_figure_minimal_phase_20260811.m` | minimal, equal-frequency, phase, and full-I/Q tables | `cc05043c55ef8ee68b2c9ee87160fc3cadf2bd918640ceeaa6195eab912b59a8` |
+| `figure3/FigS_PhotonPrecision_20260811.pdf` | `plot_dynamic_photon_kerr_thermal_20260812.m` | ten-offset centered-signal photon/Kerr table | `d324c65fbda6d34a90611768e8e2aec00598983cd86774660cb32099b45015d7` |
 | `figure3/PhaseChannelFullIQ_20260812.pdf` | `analyze_phase_channel_full_iq_20260812.m` | phase-task selection and locked offsets | `b8627a1bd0557b94b293bad56f51def201b2ec9f0b65bcaa945184f8b5ccc326` |
 
 Large temporary complex-state caches are intentionally excluded. The complete

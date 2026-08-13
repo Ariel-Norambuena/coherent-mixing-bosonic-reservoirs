@@ -97,9 +97,9 @@ plot(ax4,[-1.15 1.15],[0 0],'-','Color',[.78 .78 .78],'LineWidth',.7);
 plot(ax4,[0 0],[-1.15 1.15],'-','Color',[.78 .78 .78],'LineWidth',.7);
 xlabel(ax4,'$X=\sqrt{2}\,\mathrm{Re}\,\beta$','Interpreter','latex');
 ylabel(ax4,'$P=\sqrt{2}\,\mathrm{Im}\,\beta$','Interpreter','latex');
-text(ax4,0,-1.17,'same $n=|\beta|^2$, distinct phases', ...
+text(ax4,0,-1.08,'same $n=|\beta|^2$, distinct phases', ...
     'Interpreter','latex','HorizontalAlignment','center','FontSize',10.5);
-axis(ax4,[-1.25 1.25 -1.38 1.25]);
+axis(ax4,[-1.25 1.25 -1.30 1.25]);
 title(ax4,'(d) Observable selects accessible phase','FontWeight','normal');
 
 legend(ax3,'Interpreter','latex','Location','northeast','Box','on', ...
