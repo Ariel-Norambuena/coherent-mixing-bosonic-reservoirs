@@ -129,3 +129,15 @@ RF drivers, ADCs, stabilization, and wall-plug efficiency; the article says so.
   MAC counts; changed the comparison terminology to coefficient budget.
 - Replaced "preregistered" by "prospectively frozen" and withdrew all
   low-power, direct coherent-equalizer, and fabrication-ready claims.
+
+## 2026-08-13 editorial and figure-legibility pass
+
+- Increased axis, tick, annotation, colorbar, and legend typography across all
+  submission-facing figure generators.
+- Moved legends away from data or into shared exterior positions so that they
+  no longer obscure curves, paired realizations, or uncertainty intervals.
+- Regenerated the nine affected PDF/PNG figure pairs from the unchanged compact
+  numerical tables and refreshed their SHA-256 lineage in `RESULTS_MANIFEST.md`.
+- Reframed NARMA10 as a structure-known diagnostic of fading memory and
+  nonlinear mixing, rather than an application proxy or universal reservoir
+  benchmark.

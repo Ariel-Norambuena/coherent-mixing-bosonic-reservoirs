@@ -11,9 +11,10 @@ panelTitles=["Additive detector noise" "Digitizer resolution" ...
 xLabels=["Detector SNR (dB)" "Quantization (bits)" ...
     "Retained channel fraction" "Number of failed modes"];
 shownConditions=[1 4];
-fig=figure('Color','w','Visible','off','Units','inches','Position',[1 1 7.2 5.8]);
-tiledlayout(2,2,'Padding','compact','TileSpacing','compact');
+fig=figure('Color','w','Visible','off','Units','inches','Position',[1 1 7.2 6.15]);
+layout=tiledlayout(2,2,'Padding','compact','TileSpacing','loose');
 colors=[.15 .38 .65;.78 .25 .18];
+legendHandles=gobjects(4,1); legendAxis=gobjects(1);
 for p=1:numel(show)
     ax=nexttile; hold(ax,'on');
     for c=1:2
@@ -26,22 +27,28 @@ for p=1:numel(show)
             lower=R.medianNRMSE-R.q25NRMSE;
             upper=R.q75NRMSE-R.medianNRMSE;
             styles={'-','--'}; markers={'o','s'};
-            errorbar(ax,R.level,R.medianNRMSE,lower,upper, ...
+            h=errorbar(ax,R.level,R.medianNRMSE,lower,upper, ...
                 styles{protocolIndex},'Marker',markers{protocolIndex}, ...
                 'Color',colors(c,:),'MarkerFaceColor','w', ...
                 'LineWidth',1.2,'CapSize',4);
+            if p==1
+                legendHandles((c-1)*2+protocolIndex)=h;
+                legendAxis=ax;
+            else
+                h.HandleVisibility='off';
+            end
         end
     end
     set(ax,'YScale','log'); xlabel(ax,xLabels(p));
     ylabel(ax,'Validation NRMSE');
     title(ax,sprintf('(%c) %s','a'+p-1,panelTitles(p)),'FontWeight','normal');
     grid(ax,'on'); box(ax,'on');
-    if p==1
-        legend(ax,{'J=0, fixed','J=0, recal.','J=0.65, fixed','J=0.65, recal.'}, ...
-            'Location','northeast','Box','on','Color','w','FontSize',7.0);
-    end
 end
-set(findall(fig,'Type','axes'),'FontName','Arial','FontSize',10,'LineWidth',.8);
+lgd=legend(legendAxis,legendHandles, ...
+    {'J=0, fixed','J=0, recalibrated','J=0.65, fixed','J=0.65, recalibrated'}, ...
+    'Orientation','horizontal','NumColumns',4,'Box','off','FontSize',10.5);
+lgd.Layout.Tile='north';
+set(findall(fig,'Type','axes'),'FontName','Arial','FontSize',11.5,'LineWidth',.9);
 exportgraphics(fig,fullfile(scriptDir,'NARMAMeasurementRobustness_20260810.pdf'), ...
     'ContentType','vector');
 exportgraphics(fig,fullfile(scriptDir,'NARMAMeasurementRobustness_20260810.png'), ...

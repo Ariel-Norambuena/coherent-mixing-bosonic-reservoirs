@@ -12,8 +12,8 @@ dark = [.18 .18 .20];
 gray = [.62 .64 .67];
 
 fig = figure('Color','w','Visible','off','Units','inches', ...
-    'Position',[1 1 7.2 5.5]);
-tiledlayout(2,2,'Padding','compact','TileSpacing','compact');
+    'Position',[1 1 7.2 5.8]);
+tiledlayout(2,2,'Padding','compact','TileSpacing','loose');
 
 % (a) Actual periodic first-, second-, and third-neighbor topology.
 ax1 = nexttile; hold(ax1,'on'); axis(ax1,'equal'); axis(ax1,'off');
@@ -26,23 +26,23 @@ scatter(ax1,xy(:,1),xy(:,2),34,'w','filled','MarkerEdgeColor',dark, ...
     'LineWidth',0.8);
 for q = 1:12
     text(ax1,1.18*xy(q,1),1.18*xy(q,2),sprintf('%d',q), ...
-        'HorizontalAlignment','center','FontSize',7.5,'Color',dark);
+        'HorizontalAlignment','center','FontSize',10,'Color',dark);
 end
 axis(ax1,[-1.45 2.05 -1.35 1.35]);
 text(ax1,1.48,.95,'$\times\,3$ copies','Interpreter','latex', ...
-    'HorizontalAlignment','center','FontSize',9.5,'FontWeight','bold');
+    'HorizontalAlignment','center','FontSize',11,'FontWeight','bold');
 text(ax1,1.48,.55,'shared masked input','HorizontalAlignment','center', ...
-    'FontSize',8,'Color',red);
+    'FontSize',10,'Color',red);
 text(ax1,1.48,.20,'$\longrightarrow\ (X,P)$','Interpreter','latex', ...
-    'HorizontalAlignment','center','FontSize',9,'Color',blue);
+    'HorizontalAlignment','center','FontSize',10.5,'Color',blue);
 text(ax1,1.48,-.08,'$\longrightarrow\ n$','Interpreter','latex', ...
-    'HorizontalAlignment','center','FontSize',9,'Color',gold);
+    'HorizontalAlignment','center','FontSize',10.5,'Color',gold);
 plot(ax1,[-.75 -.45],[-1.26 -1.26],'-','Color',green,'LineWidth',1.3);
 plot(ax1,[-.30 0],[-1.26 -1.26],'--','Color',blue,'LineWidth',1.0);
 plot(ax1,[.15 .45],[-1.26 -1.26],':','Color',gold,'LineWidth',1.0);
-text(ax1,-.60,-1.36,'1st','HorizontalAlignment','center','FontSize',7.5);
-text(ax1,-.15,-1.36,'2nd','HorizontalAlignment','center','FontSize',7.5);
-text(ax1,.30,-1.36,'3rd','HorizontalAlignment','center','FontSize',7.5);
+text(ax1,-.60,-1.36,'1st','HorizontalAlignment','center','FontSize',10);
+text(ax1,-.15,-1.36,'2nd','HorizontalAlignment','center','FontSize',10);
+text(ax1,.30,-1.36,'3rd','HorizontalAlignment','center','FontSize',10);
 title(ax1,'(a) Periodic 12-mode network','FontWeight','normal');
 
 % (b) Coherent hopping redistributes the static spectrum into supermodes.
@@ -64,9 +64,9 @@ set(ax2,'XLim',[.55 2.45],'XTick',[1 2], ...
     'XTickLabel',{'uncoupled','J=0.65'});
 ylabel(ax2,'supermode frequency (normalized)');
 text(ax2,1.03,max(ec)-.15,'$J/\kappa=5.42$','Interpreter','latex', ...
-    'FontSize',8.5,'Color',dark);
+    'FontSize',10.5,'Color',dark);
 text(ax2,1.03,max(ec)-.55,'$JT_s=0.447$','Interpreter','latex', ...
-    'FontSize',8.5,'Color',dark);
+    'FontSize',10.5,'Color',dark);
 title(ax2,'(b) Coherent supermode mixing','FontWeight','normal');
 
 % (c) Exact contraction: hopping changes orientation, not the loss envelope.
@@ -79,7 +79,6 @@ semilogy(ax3,T.t,T.sameInputBound,'--','Color',dark,'LineWidth',1.3, ...
 xlabel(ax3,'time');
 ylabel(ax3,'$\Vert\delta\beta(t)\Vert_2$','Interpreter','latex');
 title(ax3,'(c) Loss-limited fading envelope','FontWeight','normal');
-legend(ax3,'Interpreter','latex','Location','southwest','Box','off');
 grid(ax3,'on'); box(ax3,'on');
 
 % (d) Observation map: phase-sensitive and phase-insensitive coordinates.
@@ -98,12 +97,14 @@ plot(ax4,[-1.15 1.15],[0 0],'-','Color',[.78 .78 .78],'LineWidth',.7);
 plot(ax4,[0 0],[-1.15 1.15],'-','Color',[.78 .78 .78],'LineWidth',.7);
 xlabel(ax4,'$X=\sqrt{2}\,\mathrm{Re}\,\beta$','Interpreter','latex');
 ylabel(ax4,'$P=\sqrt{2}\,\mathrm{Im}\,\beta$','Interpreter','latex');
-text(ax4,0,-1.27,'same $n=|\beta|^2$, distinct phases', ...
-    'Interpreter','latex','HorizontalAlignment','center','FontSize',8.5);
+text(ax4,0,-1.17,'same $n=|\beta|^2$, distinct phases', ...
+    'Interpreter','latex','HorizontalAlignment','center','FontSize',10.5);
 axis(ax4,[-1.25 1.25 -1.38 1.25]);
 title(ax4,'(d) Observable selects accessible phase','FontWeight','normal');
 
-set([ax1 ax2 ax3 ax4],'FontName','Arial','FontSize',9.5,'LineWidth',.8);
+legend(ax3,'Interpreter','latex','Location','northeast','Box','on', ...
+    'Color','w','FontSize',10.5);
+set([ax1 ax2 ax3 ax4],'FontName','Arial','FontSize',12,'LineWidth',.9);
 outPdf = fullfile(scriptDir,'Figure1_PhysicalMechanism_20260811.pdf');
 outPng = fullfile(scriptDir,'Figure1_PhysicalMechanism_20260811.png');
 exportgraphics(fig,outPdf,'ContentType','vector');

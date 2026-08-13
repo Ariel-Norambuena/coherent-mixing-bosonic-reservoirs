@@ -9,8 +9,9 @@ nPairs = numel(unique(raw.lockedIndex));
 assert(nPairs == 30 && all(isfinite(raw.testNRMSE)));
 
 fig = figure('Color','w','Visible','off','Units','inches', ...
-    'Position',[1 1 7.2 3.35]);
+    'Position',[1 1 7.2 3.9]);
 layout = tiledlayout(1,numel(modes),'TileSpacing','compact','Padding','compact');
+legendHandles = gobjects(4,1);
 for m = 1:numel(modes)
     R = raw(raw.featureMode == modes(m),:);
     control = nan(nPairs,1);
@@ -25,20 +26,35 @@ for m = 1:numel(modes)
     end
     ax = nexttile(layout,m); hold(ax,'on');
     for q = 1:nPairs
-        plot(ax,[1 2],[control(q),intervention(q)],'-', ...
-            'Color',[0.72 0.72 0.72],'LineWidth',0.65);
+        hPair = plot(ax,[1 2],[control(q),intervention(q)],'-', ...
+            'Color',[0.72 0.72 0.72],'LineWidth',0.65, ...
+            'HandleVisibility','off');
+        if m == 1 && q == 1
+            hPair.HandleVisibility = 'on';
+            hPair.DisplayName = 'paired realization';
+            legendHandles(1) = hPair;
+        end
     end
-    scatter(ax,ones(nPairs,1),control,24,[0.18 0.39 0.66], ...
-        'filled','MarkerFaceAlpha',0.78);
-    scatter(ax,2*ones(nPairs,1),intervention,24,[0.78 0.25 0.20], ...
-        'filled','MarkerFaceAlpha',0.78);
-    plot(ax,[1 2],[mean(control),mean(intervention)],'-o','Color','k', ...
-        'LineWidth',2,'MarkerFaceColor','w','MarkerSize',7);
+    hControl = scatter(ax,ones(nPairs,1),control,24,[0.18 0.39 0.66], ...
+        'filled','MarkerFaceAlpha',0.78,'DisplayName','$J=0$');
+    hCoupled = scatter(ax,2*ones(nPairs,1),intervention,24,[0.78 0.25 0.20], ...
+        'filled','MarkerFaceAlpha',0.78,'DisplayName','$J=J^*$');
+    hMean = plot(ax,[1 2],[mean(control),mean(intervention)],'-o','Color','k', ...
+        'LineWidth',2,'MarkerFaceColor','w','MarkerSize',7, ...
+        'DisplayName','condition mean');
+    if m == 1
+        legendHandles(2:4) = [hControl; hCoupled; hMean];
+    else
+        set([hControl hCoupled hMean],'HandleVisibility','off');
+    end
     xlim(ax,[0.72 2.28]); xticks(ax,[1 2]);
     xticklabels(ax,{'J = 0','J = J^*'});
     ylabel(ax,'Test NRMSE'); title(ax,titles{m},'FontWeight','normal');
-    grid(ax,'on'); ax.FontSize=10; ax.LineWidth=0.9;
+    grid(ax,'on'); ax.FontSize=12; ax.LineWidth=0.9;
 end
+lgd = legend(legendHandles,'Interpreter','latex','Orientation','horizontal', ...
+    'NumColumns',4,'Box','off','FontSize',10.5);
+lgd.Layout.Tile = 'south';
 exportgraphics(fig,fullfile(scriptDir,'NARMALockedPairs_20260810.pdf'), ...
     'ContentType','vector');
 exportgraphics(fig,fullfile(scriptDir,'NARMALockedPairs_20260810.png'), ...

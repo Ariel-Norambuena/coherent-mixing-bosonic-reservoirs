@@ -10,8 +10,8 @@ C = readtable(fullfile(scriptDir,'NARMAProcessingCapacity_Raw_20260810.csv'), ..
 
 blue = [.13 .42 .70]; red = [.79 .28 .17]; dark = [.18 .18 .20];
 fig = figure('Color','w','Visible','off','Units','inches', ...
-    'Position',[1 1 7.2 5.15]);
-tiledlayout(2,2,'Padding','compact','TileSpacing','compact');
+    'Position',[1 1 7.2 5.65]);
+tiledlayout(2,2,'Padding','compact','TileSpacing','loose');
 
 % (a) Only the prespecified Kerr-free J slice is shown.
 ax1 = nexttile; hold(ax1,'on'); box(ax1,'on'); grid(ax1,'on');
@@ -25,7 +25,7 @@ ylabel(ax1,'validation NRMSE');
 title(ax1,'(a) Kerr-free coupling selection','FontWeight','normal');
 text(ax1,.05,max(R1.meanValidationNRMSE)+.004, ...
     '$J/\kappa=0,\ 5.42,\ 6.67,\ 7.92$', ...
-    'Interpreter','latex','FontSize',8.3,'Color',dark);
+    'Interpreter','latex','FontSize',10.5,'Color',dark);
 
 % (b) Stage-two validation refinement, unchanged from the frozen protocol.
 ax2 = nexttile;
@@ -51,7 +51,7 @@ plot(ax2,find(steps==55),find(abs(gains-1.25)<1e-12),'p', ...
 for i = 1:numel(gains)
     for j = 1:numel(steps)
         text(ax2,j,i,sprintf('%.3f',M2(i,j)),'HorizontalAlignment','center', ...
-            'Color','w','FontWeight','bold','FontSize',8);
+            'Color','w','FontWeight','bold','FontSize',10.5);
     end
 end
 
@@ -88,10 +88,11 @@ xlabel(ax3,'input delay $\tau$ (symbols)','Interpreter','latex');
 ylabel(ax3,'linear-memory capacity $C_1(\tau)$','Interpreter','latex');
 title(ax3,['(c) Hopping redistributes readout-accessible memory within the ' ...
     'same loss envelope'],'FontWeight','normal');
-legend(ax3,'Interpreter','latex','Location','northeast','Box','off');
+legend(ax3,'Interpreter','latex','Location','southoutside', ...
+    'Orientation','horizontal','NumColumns',3,'Box','off','FontSize',10.5);
 xlim(ax3,[1 20]);
 
-set([ax1 ax2 ax3],'FontName','Arial','FontSize',9.5,'LineWidth',.8);
+set([ax1 ax2 ax3],'FontName','Arial','FontSize',11.5,'LineWidth',.9);
 writetable(summaryRows,fullfile(scriptDir,'NARMALinearMemoryByLag_20260811.csv'));
 exportgraphics(fig,fullfile(scriptDir,'Figure2_KerrFreeSelectionMemory_20260811.pdf'), ...
     'ContentType','vector');
