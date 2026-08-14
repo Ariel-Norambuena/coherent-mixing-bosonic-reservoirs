@@ -157,3 +157,13 @@ RF drivers, ADCs, stabilization, and wall-plug efficiency; the article says so.
   per-realization checks that both full-I/Q baselines beat every phase-only
   baseline in all 30 locked pairs.
 - Lifted the Fig. 1 phase annotation and simplified the dense Fig. 6(d) labels.
+
+## 2026-08-14 v2.2.4 mechanical submission closure
+
+- Added a repository-level `.gitattributes` policy that fixes tracked text to
+  LF and prevents platform-dependent CRLF conversion from invalidating the
+  published SHA-256 manifest.
+- Documented the byte-level hash convention and clean-checkout verification
+  procedure in `REPRODUCIBILITY.md`.
+- Closed manuscript wording and metadata items only; no architectures,
+  simulations, numerical results, figures, or scientific claims were changed.

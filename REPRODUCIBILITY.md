@@ -100,3 +100,13 @@ regenerates the digital full-I/Q table without rerunning the reservoir.
 
 See `RESULTS_MANIFEST.md` for script, configuration, input, output, and SHA-256
 lineage of each submission-facing artifact.
+
+## Line endings and manifest hashes
+
+The SHA-256 values in `RESULTS_MANIFEST.md` refer to the exact bytes in the
+versioned release. The repository-level `.gitattributes` file enforces LF line
+endings for tracked text files and disables text conversion for binary
+artifacts. This makes the manifest hashes independent of a user's global
+`core.autocrlf` setting on Windows. Hashes should be checked in a clean release
+checkout; editors or archive tools that rewrite line endings necessarily
+change the bytes and therefore the corresponding SHA-256 value.
