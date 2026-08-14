@@ -162,7 +162,8 @@ RF drivers, ADCs, stabilization, and wall-plug efficiency; the article says so.
 
 - Added a repository-level `.gitattributes` policy that fixes tracked text to
   LF and prevents platform-dependent CRLF conversion from invalidating the
-  published SHA-256 manifest.
+  published SHA-256 manifest. Recomputed 36 CSV hashes against the exact LF
+  release bytes; the numerical table contents are unchanged.
 - Documented the byte-level hash convention and clean-checkout verification
   procedure in `REPRODUCIBILITY.md`.
 - Closed manuscript wording and metadata items only; no architectures,

@@ -1,7 +1,10 @@
-﻿# Results manifest
+# Results manifest
 
 SHA-256 lineage frozen after the successful `run_all('verify')` execution and
-final LaTeX compilation on 2026-08-13. Paths are relative to the project root.
+final LaTeX compilation on 2026-08-13. On 2026-08-14, 36 CSV hashes were
+normalized from working-tree CRLF bytes to the exact LF bytes stored in the
+versioned release; numerical contents were unchanged. Paths are relative to
+the project root.
 
 ## Configurations and entry point
 
@@ -19,42 +22,42 @@ final LaTeX compilation on 2026-08-13. Paths are relative to the project root.
 
 | Artifact | Producer | SHA-256 |
 |---|---|---|
-| `figure3/NARMASelectionStage1_Summary_20260807.csv` | `analyze_narma_selection_stage1_20260807.m` | `204bb9b8469ca2e128de9892d74aa41721f694e86b99fb1eca7f6e2c4e7b72b7` |
-| `figure3/NARMASelectionStage2_Summary_20260810.csv` | `analyze_narma_selection_stage2_20260810.m` | `06dd8c97d3178dd196dcb3111e4acdcfb4c96eb28edbbfa0bd44653bc3ecdc1c` |
-| `figure3/NARMALockedPairs_Raw_20260810.csv` | `analyze_narma_locked_pairs_20260810.m` | `a40316d880b0b4ce3240eaac6fa10effff86ce6c0c50ab2643907c0703317ac2` |
-| `figure3/NARMALockedPairs_Statistics_20260810.csv` | `analyze_narma_locked_pairs_20260810.m` | `79af69b55ca65cfed2f9a360a68cc4d6bc6a679fd12f2bc17af7d24ae8b090f9` |
-| `figure3/NARMABaselineLocked_Raw_20260810.csv` | `analyze_narma_baseline_locked_20260810.m` | `55b27cc1e9e426791818823d5c13695dcedfd53949d5e1e8dbdf206d69f0fe11` |
-| `figure3/NARMABaselineLocked_Statistics_20260810.csv` | `analyze_narma_baseline_locked_20260810.m` | `7df72d20d9286becf94b1956ae1f506773a80ef15e65344d20fc10befc70a2e1` |
-| `figure3/NARMAFairComparison_PhysicalRaw_20260810.csv` | `analyze_narma_fair_comparison_20260810.m` | `b686cc7238321b12924e50d992efe92bee39965ad7892d7ef9b55ad0e089fc13` |
-| `figure3/NARMAFairComparison_PhysicalSummary_20260810.csv` | `analyze_narma_fair_comparison_20260810.m` | `37f653fee332f4288d8552902df5edd3d0c72c6e9be96b670ca4c4dd6c60a666` |
-| `figure3/NARMAMechanismAblation_Raw_20260810.csv` | `analyze_narma_mechanism_ablation_20260810.m` | `6a11d93fec099486c0e87f2d0534e97ac65dcd9f7d83c25e736ab6347212507a` |
-| `figure3/NARMAMechanismAblation_Summary_20260810.csv` | `analyze_narma_mechanism_ablation_20260810.m` | `13500b0639957e37d9c2f09febb7ba3a522d274b025b82962a0cbf0388e0e2c3` |
-| `figure3/NARMAProcessingCapacity_Raw_20260810.csv` | `analyze_narma_processing_capacity_20260810.m` | `f02c0d7d5abfc8fa74b78771fcba7835097261031bd778a5a17cc8ffb603e57e` |
-| `figure3/NARMAProcessingCapacity_Summary_20260810.csv` | `analyze_narma_processing_capacity_20260810.m` | `84e6ffff5930a83a47a1dddd4c1d991d553822899c5a23c97fe30271f335338d` |
-| `figure3/NARMAMeasurementRobustness_Raw_20260810.csv` | `analyze_narma_measurement_robustness_20260810.m` | `870cb1efef94d9cfd7e21f288630ee73b603584c6554dc8722846fc44252ee2e` |
-| `figure3/NARMAMeasurementRobustness_Summary_20260810.csv` | `analyze_narma_measurement_robustness_20260810.m` | `9a9758b7c591d7431a733980bafdb9f9365a311d0f41c7840f3c68c43671d4ed` |
-| `figure3/NARMASolverConvergence_20260810.csv` | `analyze_narma_solver_convergence_20260810.m` | `a5c518bd39d3d781efee8fe62a39e743be614c4313a50a4ea05951817bd66823` |
-| `figure3/NARMASeedDeterminism_20260810.csv` | `analyze_narma_determinism_20260810.m` | `eb1366a2246e96af4166d954802b6fa3ff28f6ade148a0e20869dc778a1ef490` |
-| `figure3/K0ContractionSummary_20260810.csv` | `verify_k0_contraction_20260810.m` | `26cf0458f0039eb8c0c73c51d70a77b3da7cad77e050efe2eaad3cc942c6e3de` |
-| `figure3/HardwareMapping_HybridSiNTFLN_20260810.csv` | `generate_hardware_mapping_20260810.m` | `150c6aabc189514dfd2b08556508caa9e1ca8f3b362230b8131737152566f6a3` |
-| `figure3/HardwareResourceBudget_20260810.csv` | `generate_hardware_mapping_20260810.m` | `37947187cf0fe252ba62e9e768ded391714f3b936a2ae8d74804eb5b0a087e16` |
-| `figure3/MinimalArchitectureStageA_Summary_20260811.csv` | `analyze_minimal_architecture_stage_a_20260811.m` | `fadf19189bf8af649594067b20e1b9ba2b6591a99788381c15a384a329f0e444` |
-| `figure3/MinimalArchitectureCopySelection_Raw_20260811.csv` | `analyze_minimal_architecture_copy_selection_20260811.m` | `55f3ac06533bac118b99be3f43c2245da25be38b3c55bddd36a41e4c92ef3ea0` |
-| `figure3/MinimalArchitectureFreshNARMA_Raw_20260811.csv` | `analyze_minimal_architecture_locked_20260811.m` | `65f3f6969672a3aac58052e55c6be70d0ff8de52da2c6f975c4bb1c33fc4dc23` |
-| `figure3/PhaseChannelSelectionSummary_20260811.csv` | `analyze_phase_channel_selection_20260811.m` | `dc6bafc018c1ecec7b5cf8c2e04c410c09ad9b9f42bbfb1f03bc712a2df22456` |
-| `figure3/PhaseChannelLocked_Raw_20260811.csv` | `analyze_phase_channel_locked_20260811.m` | `1d0848de37ffa20e74143a8c35f6a89650d97413e9bce30c54c98456cfe985d2` |
-| `figure3/PhaseChannelLocked_Summary_20260811.csv` | `analyze_phase_channel_locked_20260811.m` | `7e68ccb8f77c8e969699a20951f015207f8bc61b6843dda023244ab45bd81458` |
-| `figure3/PhotonPrecisionMapping_20260811.csv` | `analyze_photon_precision_mapping_20260811.m` | `d9e445b036e6ead4169668c64082d4016512a7db70ef30067681686c38c50067` |
-| `figure3/TaskSignalTracesExtended_20260811.csv` | `generate_signal_complexity_extended_20260811.m` | `174190cf9b94ae550a273b70478a220b1f2d56d62f49e491c891eef9b664744e` |
-| `figure3/TaskSignalSpectraExtended_20260811.csv` | `generate_signal_complexity_extended_20260811.m` | `437499c38d2124cd57b65cdcd7658a57650ea8bc369712d51fe3ceeb391f3ab4` |
-| `figure3/DynamicPhotonKerrThermalAudit_20260812.csv` | `analyze_dynamic_photon_kerr_thermal_20260812.m` | `2130ddc6eca32d7470d6dddabf0d4643a71e6d54e7b174041f7aca82c0381912` |
-| `figure3/DynamicPhotonKerrMultiOffset_Raw_20260813.csv` | `analyze_dynamic_photon_kerr_multioffset_20260813.m` | `86f3c32f2432706e8bf515e1810d8e33aad9694f5bdc67d574b549421066f87e` |
-| `figure3/DynamicPhotonKerrMultiOffset_Summary_20260813.csv` | `analyze_dynamic_photon_kerr_multioffset_20260813.m` | `53e13e1f8963e0cb521951dd58988b39811b9d6257e661ec477f4434ad55e5dd` |
-| `figure3/EqualFrequencyControl_Raw_20260812.csv` | `analyze_equal_frequency_control_20260812.m` | `c290f4d0a175122f16ccfc861d98680ade9d5730ff24c8fa4b6fb80c33a843d5` |
-| `figure3/EqualFrequencyControl_Summary_20260812.csv` | `analyze_equal_frequency_control_20260812.m` | `3b3a7d62cc533a606b254dba362bbbd711893345c9156d098545d3f85a80e391` |
-| `figure3/PhaseChannelFullIQ_Selection_20260812.csv` | `analyze_phase_channel_full_iq_20260812.m` | `05c1c1670c8d4fcc8d2d337b15c3e677c497075a97a443757bbb294cf60b9595` |
-| `figure3/PhaseChannelFullIQ_Raw_20260812.csv` | `analyze_phase_channel_full_iq_20260812.m` | `3d99df12fd005a5664d5f2758463e060bf4e9774448e620f64f4687cd30579a8` |
-| `figure3/PhaseChannelFullIQ_Summary_20260812.csv` | `analyze_phase_channel_full_iq_20260812.m` | `71f8e0a041c5a05a06ef9210af1130b35f44989d552fa301cbeb16455922a9fb` |
+| `figure3/NARMASelectionStage1_Summary_20260807.csv` | `analyze_narma_selection_stage1_20260807.m` | `e8af1b66b6f353c14ab50e02a47f6186dc2e06b197bf867aa294dda83e4f0e00` |
+| `figure3/NARMASelectionStage2_Summary_20260810.csv` | `analyze_narma_selection_stage2_20260810.m` | `81c910d8d4396e4b1a609c8a867bdd083d9386b1d4054c98b7862f9a82adbd38` |
+| `figure3/NARMALockedPairs_Raw_20260810.csv` | `analyze_narma_locked_pairs_20260810.m` | `92f59b7f818c893fe97b8a56c6a76ef4262d5afacd4a11932e776b67997bf65e` |
+| `figure3/NARMALockedPairs_Statistics_20260810.csv` | `analyze_narma_locked_pairs_20260810.m` | `8d12a0c2b790fcb0fb1d8d38641be3b603a19b9eca37b018ea1e8897caa66315` |
+| `figure3/NARMABaselineLocked_Raw_20260810.csv` | `analyze_narma_baseline_locked_20260810.m` | `a69802cd17ac68f87218402d1ae8d13b88eed49c56ddfabb0753f676578f6111` |
+| `figure3/NARMABaselineLocked_Statistics_20260810.csv` | `analyze_narma_baseline_locked_20260810.m` | `03981cd06f69d5b92dbd03934683548745966c62d32e1427890a3f36d3b6aa99` |
+| `figure3/NARMAFairComparison_PhysicalRaw_20260810.csv` | `analyze_narma_fair_comparison_20260810.m` | `d9dd7274f9859a57465d11c09bac9c4dc0e32fd19bcad900401606d3536b7dfb` |
+| `figure3/NARMAFairComparison_PhysicalSummary_20260810.csv` | `analyze_narma_fair_comparison_20260810.m` | `1ec0a2ffd905a440b0b45cced8c9f5d4b57a1e6c4be30841fc824bad307bb5ac` |
+| `figure3/NARMAMechanismAblation_Raw_20260810.csv` | `analyze_narma_mechanism_ablation_20260810.m` | `8270780ba8115b05a4f156d5490bf15862fc711fb410c0209e8aa543ba5bd060` |
+| `figure3/NARMAMechanismAblation_Summary_20260810.csv` | `analyze_narma_mechanism_ablation_20260810.m` | `fa654c0f4549f56511432e42e2bb7c00092d90208797aa087bae3e7c8cef4df9` |
+| `figure3/NARMAProcessingCapacity_Raw_20260810.csv` | `analyze_narma_processing_capacity_20260810.m` | `fde8a31f95db5d336dcc98a958e15f38db3ffc14d47961d6aa9d3b82165ab457` |
+| `figure3/NARMAProcessingCapacity_Summary_20260810.csv` | `analyze_narma_processing_capacity_20260810.m` | `4bac8e14bb74942959f177aca6af112e98722fd0c06596b082cdff7dd42094a4` |
+| `figure3/NARMAMeasurementRobustness_Raw_20260810.csv` | `analyze_narma_measurement_robustness_20260810.m` | `e196996b952e61248d36c962df11295cb6d43b9d0d2ff7dd94236d084a1d2c85` |
+| `figure3/NARMAMeasurementRobustness_Summary_20260810.csv` | `analyze_narma_measurement_robustness_20260810.m` | `7c4db0f92ce2eadf4dc02cb78122c637d54e0d2296541fc62532430bea90de3e` |
+| `figure3/NARMASolverConvergence_20260810.csv` | `analyze_narma_solver_convergence_20260810.m` | `be6e7f69cdd15456719e45192952cb2848edb287a6845ae22eceaf635c26c24b` |
+| `figure3/NARMASeedDeterminism_20260810.csv` | `analyze_narma_determinism_20260810.m` | `8018480e1b8b5d5c1cafaaa62e5bf57123dade7c2a5c70bce0689b741f60a77c` |
+| `figure3/K0ContractionSummary_20260810.csv` | `verify_k0_contraction_20260810.m` | `a03f5bcc4659eb6d1a03b965e4d3009225364603da05167bf775e4ffd929d2d0` |
+| `figure3/HardwareMapping_HybridSiNTFLN_20260810.csv` | `generate_hardware_mapping_20260810.m` | `827dcd5eb6e0ab6799781258cc304910885b66977c2d0ba0c6271d993b3ce864` |
+| `figure3/HardwareResourceBudget_20260810.csv` | `generate_hardware_mapping_20260810.m` | `21b1bc9d95110b27ed211ecd35ff166c7b0ad83b6ee1af97d74367098de8c0f9` |
+| `figure3/MinimalArchitectureStageA_Summary_20260811.csv` | `analyze_minimal_architecture_stage_a_20260811.m` | `745c4e645652763f5e141f56547e1fa0c1711fb4dc2ba91ad2faf05965633e8e` |
+| `figure3/MinimalArchitectureCopySelection_Raw_20260811.csv` | `analyze_minimal_architecture_copy_selection_20260811.m` | `26afaa5241f98f2846f1cdbc5739f142dcd2b396a1a5f4fc632617ad77356b72` |
+| `figure3/MinimalArchitectureFreshNARMA_Raw_20260811.csv` | `analyze_minimal_architecture_locked_20260811.m` | `52f57ced7c49a3eef5728b26e35b8f41d0be8d39367c1a6751b9fa29f570905b` |
+| `figure3/PhaseChannelSelectionSummary_20260811.csv` | `analyze_phase_channel_selection_20260811.m` | `aedc9bc8f066a979b954c9b2a46c8c40a3b3e783661470e9dce08fc35bbaf7ec` |
+| `figure3/PhaseChannelLocked_Raw_20260811.csv` | `analyze_phase_channel_locked_20260811.m` | `ad5d9a37f50744116d7a2f4a0074a70fff11f62700324c51d116a624b8089cd1` |
+| `figure3/PhaseChannelLocked_Summary_20260811.csv` | `analyze_phase_channel_locked_20260811.m` | `b62b511735b661fca76056165d1b8c8ea4736ef9af25d098dd640cc42615893e` |
+| `figure3/PhotonPrecisionMapping_20260811.csv` | `analyze_photon_precision_mapping_20260811.m` | `8885651cecd61b93dfbc7cfb20fcb1dba89922f9428b9da11db9c36ac53ea64e` |
+| `figure3/TaskSignalTracesExtended_20260811.csv` | `generate_signal_complexity_extended_20260811.m` | `a35e9365f8a9ed19cf7b6d5dcfb070b9c4be3378ac1c53bb8eabf7543b71ec29` |
+| `figure3/TaskSignalSpectraExtended_20260811.csv` | `generate_signal_complexity_extended_20260811.m` | `6c76ec257e5ee7b6d17b745f169bb7aa0d847b39433fdb0f71ff5fd4a94ed61f` |
+| `figure3/DynamicPhotonKerrThermalAudit_20260812.csv` | `analyze_dynamic_photon_kerr_thermal_20260812.m` | `cbb2b1e607c1c5cf874cbb6dea617fda0d9f0fdfe32b5612ec6f82b554a6bf8e` |
+| `figure3/DynamicPhotonKerrMultiOffset_Raw_20260813.csv` | `analyze_dynamic_photon_kerr_multioffset_20260813.m` | `3182d602e957e02afdfee6eaeae0e9ca1b95c9b3c7705a7d2051c35a1586d663` |
+| `figure3/DynamicPhotonKerrMultiOffset_Summary_20260813.csv` | `analyze_dynamic_photon_kerr_multioffset_20260813.m` | `d48f5510a87da06fa2945038d818017701f44cc205e9f1448c3925db8ff3adce` |
+| `figure3/EqualFrequencyControl_Raw_20260812.csv` | `analyze_equal_frequency_control_20260812.m` | `0439b6f6fc1f9481f2f9ada3cfdceeb9dd98ad7c1e5100613fbbf64d3592a7f5` |
+| `figure3/EqualFrequencyControl_Summary_20260812.csv` | `analyze_equal_frequency_control_20260812.m` | `f8213b0d1002a34f88ddebca53d5ecefe37e8feb6a49e906a5302ed59654980b` |
+| `figure3/PhaseChannelFullIQ_Selection_20260812.csv` | `analyze_phase_channel_full_iq_20260812.m` | `a3ad86590c81f263d9083a6681f3a1a9497b299d8743c7eaa2cb356bf9870c7d` |
+| `figure3/PhaseChannelFullIQ_Raw_20260812.csv` | `analyze_phase_channel_full_iq_20260812.m` | `eadfae1dba2798b87e5fc7bc2c017792b0dccbca9c04a0c0a10900a26d7eb803` |
+| `figure3/PhaseChannelFullIQ_Summary_20260812.csv` | `analyze_phase_channel_full_iq_20260812.m` | `bc954aa5b57fefb0e6f17ba0e25b841516204c8d885048dbfb6e038a9efb9dba` |
 
 ## Figures
 
@@ -75,4 +78,3 @@ final LaTeX compilation on 2026-08-13. Paths are relative to the project root.
 
 Large temporary complex-state caches are intentionally excluded. The complete
 paper values are retained in the compact seed-level tables listed above.
-
